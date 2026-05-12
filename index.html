@@ -3,82 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BizPRO - Smart Edition</title>
+    <title>BizPRO - Professional Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- 紙吹雪ライブラリ -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         .hidden { display: none; }
-        /* スライドインアニメーション */
-        .slide-in { animation: slideIn 0.3s ease-out forwards; }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
+        /* スライドインアニメーション（より滑らかに） */
+        .page-transition { animation: slideUp 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-        /* ボタンの押し心地 */
-        .btn-push { transition: all 0.1s; }
-        .btn-push:active { transform: scale(0.95); filter: brightness(0.9); }
-        /* ぼかし背景（グラスモーフィズム） */
-        .glass { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px); }
+        /* 押し心地を視覚的に強化 */
+        .active-scale:active { transform: scale(0.96); filter: brightness(0.95); }
+        body { -webkit-tap-highlight-color: transparent; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex justify-center items-start font-sans text-slate-900 select-none">
+<body class="bg-slate-100 min-h-screen flex justify-center items-start font-sans text-slate-900 overflow-x-hidden">
 
-    <div id="app" class="max-w-md w-full bg-white min-h-[100dvh] sm:min-h-[700px] sm:mt-4 sm:rounded-[3rem] shadow-2xl overflow-hidden flex flex-col border border-slate-200">
+    <div id="app" class="max-w-md w-full bg-white min-h-[100dvh] sm:min-h-[750px] sm:mt-4 sm:mb-4 sm:rounded-[3rem] shadow-2xl overflow-hidden flex flex-col border border-slate-200">
         
         <!-- HEADER -->
-        <div class="bg-slate-900 p-8 text-white text-center relative">
+        <div class="bg-slate-900 p-8 text-white text-center relative overflow-hidden">
             <h1 class="text-2xl font-black italic tracking-tighter text-indigo-400">BIZPRO</h1>
-            <p id="header-subtitle" class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Mastering Nuance</p>
-            <div id="progress-bar-top" class="absolute bottom-0 left-0 h-1 bg-indigo-500 transition-all duration-500" style="width: 0%"></div>
+            <p id="header-subtitle" class="text-[10px] text-slate-500 uppercase tracking-widest mt-1">Advanced Nuance Training</p>
+            <!-- 上部プログレスバー -->
+            <div id="top-progress" class="absolute bottom-0 left-0 h-1.5 bg-indigo-500 transition-all duration-700" style="width: 0%"></div>
         </div>
 
-        <div class="p-6 flex-1 flex flex-col">
-            <!-- 1. MENU SCREEN -->
-            <div id="menu-screen" class="slide-in space-y-4">
-                <div class="flex items-center justify-between mb-2">
-                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Training Categories</p>
-                    <span class="text-[10px] bg-slate-100 px-2 py-1 rounded-full text-slate-500">v2.5</span>
+        <div class="p-6 flex-1 flex flex-col relative">
+            <!-- 1. メニュー画面 -->
+            <div id="menu-screen" class="page-transition space-y-4">
+                <div class="flex items-center justify-between mb-4">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-widest">Select Category</p>
                 </div>
-                <div id="category-list" class="grid grid-cols-1 gap-3 text-sm">
-                    <div class="animate-pulse flex space-y-4 flex-col">
-                        <div class="h-16 bg-slate-100 rounded-2xl"></div>
-                        <div class="h-16 bg-slate-100 rounded-2xl"></div>
+                <div id="category-list" class="grid gap-4">
+                    <div class="animate-pulse space-y-4">
+                        <div class="h-20 bg-slate-100 rounded-3xl"></div>
+                        <div class="h-20 bg-slate-100 rounded-3xl"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- 2. QUIZ SCREEN -->
-            <div id="quiz-screen" class="hidden slide-in flex-1 flex flex-col">
-                <div class="flex justify-between items-center mb-4">
-                    <button onclick="location.reload()" class="text-slate-400 text-xs">← Exit</button>
-                    <span id="q-counter" class="text-xs font-mono font-bold text-indigo-500"></span>
+            <!-- 2. クイズ画面 -->
+            <div id="quiz-screen" class="hidden page-transition flex-1 flex flex-col">
+                <div class="flex justify-between items-center mb-6">
+                    <button onclick="location.reload()" class="text-slate-400 font-bold p-2">✕ Close</button>
+                    <span id="q-counter" class="bg-indigo-50 text-indigo-600 px-4 py-1 rounded-full text-xs font-black italic"></span>
                 </div>
-                <div id="dialogue-box" class="mb-6 p-5 bg-indigo-50 rounded-3xl border border-indigo-100 text-sm italic text-indigo-900 leading-relaxed relative">
-                    <span class="absolute -top-2 left-4 bg-white px-2 text-[10px] font-bold text-indigo-300 border border-indigo-100 rounded">CONTEXT</span>
+                
+                <div class="mb-6 p-5 bg-slate-50 rounded-3xl border border-slate-100 italic text-sm text-slate-600 leading-relaxed relative">
+                    <p id="dialogue-text"></p>
                 </div>
-                <p id="question-text" class="text-xl font-bold text-slate-800 mb-8 leading-tight"></p>
-                <div id="choice-area" class="space-y-3"></div>
+
+                <p id="question-text" class="text-xl font-bold text-slate-800 mb-8 px-2"></p>
+
+                <div id="choice-area" class="space-y-3 pb-10"></div>
             </div>
 
-            <!-- 3. FEEDBACK SCREEN -->
-            <div id="feedback-screen" class="hidden slide-in text-center">
-                <div id="result-card" class="p-8 rounded-[2.5rem] mb-6 border-4 text-left shadow-xl">
-                    <h2 id="result-title" class="text-3xl font-black mb-4 italic"></h2>
-                    <div class="bg-white/50 p-5 rounded-2xl mb-4 border border-white/50">
-                        <p id="full-sentence" class="text-slate-800 font-bold text-lg leading-relaxed"></p>
+            <!-- 3. フィードバック画面 -->
+            <div id="feedback-screen" class="hidden page-transition text-center flex-1 flex flex-col justify-between">
+                <div id="result-card" class="p-8 rounded-[2.5rem] border-4 text-left shadow-xl transition-all">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 id="result-title" class="text-3xl font-black italic"></h2>
+                        <button onclick="speakAnswer()" class="bg-white p-3 rounded-full shadow-md active:scale-90 transition">🔊</button>
+                    </div>
+                    
+                    <div class="bg-white/60 p-5 rounded-2xl mb-4 border border-white/50">
+                        <p id="full-sentence" class="text-slate-900 font-bold text-lg leading-relaxed"></p>
                     </div>
                     <p id="explanation-text" class="text-sm text-slate-700 leading-relaxed"></p>
                 </div>
-                <button onclick="nextQuestion()" class="btn-push w-full bg-slate-900 text-white py-6 rounded-2xl font-black shadow-2xl">CONTINUE</button>
+                <button onclick="nextQuestion()" class="active-scale w-full bg-slate-900 text-white py-6 rounded-3xl font-black shadow-2xl mt-6">NEXT LEVEL →</button>
             </div>
 
-            <!-- 4. SUMMARY SCREEN -->
-            <div id="summary-screen" class="hidden slide-in text-center py-10">
-                <div class="text-6xl mb-4">⭐</div>
-                <h2 id="rank-title" class="text-3xl font-black mb-2 uppercase">Executive</h2>
-                <p id="summary-text" class="text-slate-500 mb-10"></p>
-                <button onclick="location.reload()" class="btn-push w-full bg-indigo-600 text-white py-6 rounded-2xl font-black shadow-lg">FINISH SESSION</button>
+            <!-- 4. 結果画面 -->
+            <div id="summary-screen" class="hidden page-transition text-center py-10">
+                <div class="text-7xl mb-6">🎯</div>
+                <h2 id="rank-title" class="text-4xl font-black mb-2 text-slate-800"></h2>
+                <p id="summary-text" class="text-slate-500 mb-10 text-lg"></p>
+                <button onclick="location.reload()" class="active-scale w-full bg-indigo-600 text-white py-6 rounded-3xl font-black shadow-lg">RETRY TRAINING</button>
             </div>
         </div>
     </div>
@@ -89,13 +93,23 @@
         let currentIdx = 0;
         let score = 0;
 
+        // 音声読み上げ
+        function speakAnswer() {
+            const data = activePool[currentIdx];
+            const text = data.q.replace("(      )", data.a);
+            const uttr = new SpeechSynthesisUtterance(text);
+            uttr.lang = 'en-US';
+            uttr.rate = 0.9;
+            speechSynthesis.speak(uttr);
+        }
+
         async function loadData() {
             try {
                 const response = await fetch('quiz.json');
                 allQuestions = await response.json();
                 renderMenu();
             } catch (e) {
-                document.getElementById('category-list').innerHTML = `<p class='text-red-400'>Error loading quiz.json</p>`;
+                document.getElementById('category-list').innerHTML = `<p class="p-10 text-red-500 font-bold">Error: quiz.json not found.</p>`;
             }
         }
 
@@ -106,17 +120,22 @@
             categories.forEach(cat => {
                 const count = allQuestions.filter(q => q.category === cat).length;
                 const btn = document.createElement('button');
-                btn.className = "btn-push w-full flex justify-between items-center p-6 bg-white border border-slate-200 rounded-[1.5rem] shadow-sm hover:border-indigo-400";
-                btn.innerHTML = `<div><span class="block font-bold text-slate-800">${cat}</span><span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">${count} Questions</span></div><span class="text-indigo-200">❯</span>`;
-                btn.onclick = () => { triggerVibrate(10); startQuiz(cat); };
+                btn.className = "active-scale w-full flex justify-between items-center p-6 bg-white border border-slate-200 rounded-[2rem] shadow-sm hover:border-indigo-400";
+                btn.innerHTML = `
+                    <div class="text-left">
+                        <span class="block font-black text-slate-800 text-lg">${cat}</span>
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">${count} Questions</span>
+                    </div>
+                    <span class="text-indigo-200 text-xl font-black">❯</span>`;
+                btn.onclick = () => { vibrate(15); startQuiz(cat); };
                 list.appendChild(btn);
             });
         }
 
         function startQuiz(category) {
             activePool = allQuestions.filter(q => q.category === category);
-            currentIdx = 0;
-            score = 0;
+            currentIdx = 0; score = 0;
+            document.getElementById('header-subtitle').innerText = category;
             document.getElementById('menu-screen').classList.add('hidden');
             document.getElementById('quiz-screen').classList.remove('hidden');
             showQuestion();
@@ -125,15 +144,15 @@
         function showQuestion() {
             const data = activePool[currentIdx];
             document.getElementById('q-counter').innerText = `${currentIdx + 1} / ${activePool.length}`;
-            document.getElementById('dialogue-box').innerText = data.dialogue;
+            document.getElementById('dialogue-text').innerText = data.dialogue;
             document.getElementById('question-text').innerText = data.q;
-            document.getElementById('progress-bar-top').style.width = `${((currentIdx) / activePool.length) * 100}%`;
+            document.getElementById('top-progress').style.width = `${(currentIdx / activePool.length) * 100}%`;
             
             const area = document.getElementById('choice-area');
             area.innerHTML = '';
             data.choices.forEach(c => {
                 const b = document.createElement('button');
-                b.className = "btn-push w-full text-left p-5 bg-white border-2 border-slate-100 rounded-2xl font-bold shadow-sm";
+                b.className = "active-scale w-full text-left p-5 bg-white border-2 border-slate-100 rounded-2xl font-bold shadow-sm";
                 b.innerText = c;
                 b.onclick = () => checkAnswer(c);
                 area.appendChild(b);
@@ -143,25 +162,27 @@
         function checkAnswer(val) {
             const data = activePool[currentIdx];
             const isCorrect = val.trim().toLowerCase() === data.a.toLowerCase();
-            
             if (isCorrect) {
                 score++;
-                triggerVibrate([20, 10, 20]); // 正解時のリズム刻み
-                confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 }, colors: ['#6366f1', '#a5b4fc', '#ffffff'] });
+                vibrate([30, 20, 30]);
+                confetti({ particleCount: 120, spread: 60, origin: { y: 0.7 }, colors: ['#4f46e5', '#818cf8', '#ffffff'] });
             } else {
-                triggerVibrate(100); // 不正解時は長めの振動
+                vibrate(100);
             }
 
             document.getElementById('quiz-screen').classList.add('hidden');
             document.getElementById('feedback-screen').classList.remove('hidden');
             
             const card = document.getElementById('result-card');
-            document.getElementById('result-title').innerText = isCorrect ? "GREAT!" : "Ouch!";
+            document.getElementById('result-title').innerText = isCorrect ? "EXCELLENT!" : "KEEP TRYING!";
             card.style.borderColor = isCorrect ? "#10b981" : "#f43f5e";
-            card.style.backgroundColor = isCorrect ? "#ecfdf5" : "#fff1f2";
+            card.style.backgroundColor = isCorrect ? "#f0fdf4" : "#fef2f2";
             
             document.getElementById('full-sentence').innerText = data.q.replace("(      )", data.a);
             document.getElementById('explanation-text').innerText = data.exp;
+
+            // 自動読み上げ
+            speakAnswer();
         }
 
         function nextQuestion() {
@@ -178,21 +199,18 @@
         function showSummary() {
             document.getElementById('feedback-screen').classList.add('hidden');
             document.getElementById('summary-screen').classList.remove('hidden');
-            document.getElementById('progress-bar-top').style.width = `100%`;
+            document.getElementById('top-progress').style.width = "100%";
             
             const rate = score / activePool.length;
-            let rank = "Beginner";
-            if(rate === 1) rank = "Executive VP";
-            else if(rate >= 0.7) rank = "Director";
-            else if(rate >= 0.4) rank = "Manager";
+            let rank = "TRAINEE";
+            if(rate === 1) rank = "EXECUTIVE";
+            else if(rate >= 0.7) rank = "MANAGER";
 
             document.getElementById('rank-title').innerText = rank;
-            document.getElementById('summary-text').innerText = `You mastered ${score} out of ${activePool.length} nuances.`;
+            document.getElementById('summary-text').innerText = `${activePool.length}問中${score}問正解！`;
         }
 
-        function triggerVibrate(pattern) {
-            if (navigator.vibrate) navigator.vibrate(pattern);
-        }
+        function vibrate(p) { if (navigator.vibrate) navigator.vibrate(p); }
 
         loadData();
     </script>
