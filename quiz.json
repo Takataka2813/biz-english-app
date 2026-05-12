@@ -1,16 +1,72 @@
 [
   {
-    "dialogue": "A: The budget is tight.\nB: I have some (  ) about this, but let's try.",
-    "q": "(      ) about that request, but let's see if we can offer something else.",
-    "a": "Reservations",
-    "choices": ["Reservations", "Complaints", "Doubts", "Bad feelings"],
-    "exp": "文頭のReservationsは『懸念』を意味する洗練された表現です。"
+    "dialogue": "A: We need to change the entire design.\nB: I have some (  ) about doing that so close to the deadline.",
+    "q": "I have some (      ) about doing that so close to the deadline.",
+    "a": "reservations",
+    "choices": ["reservations", "complaints", "noises", "regrets"],
+    "exp": "反対意見を述べる際、直接的なNoを避け『懸念がある』と伝える洗練された表現です。"
   },
   {
-    "dialogue": "A: Is the report ready?\nB: I'm just (  ) up with the team.",
-    "q": "I'm just (      ) up on that with the team right now.",
+    "dialogue": "A: Everyone is talking at once.\nB: Sorry, could I just (  ) for a second to clarify one point?",
+    "q": "Sorry, could I just (      ) for a second to clarify one point?",
+    "a": "interject",
+    "choices": ["interject", "interrupt", "break", "talk"],
+    "exp": "会議で発言に割って入る際、interruptよりも『意見を差し挟む』というニュアンスで丁寧です。"
+  },
+  {
+    "dialogue": "A: Has the client signed the contract?\nB: I'm just (  ) up on that with them as we speak.",
+    "q": "I'm just (      ) up on that with them as we speak.",
     "a": "following",
     "choices": ["following", "checking", "looking", "asking"],
-    "exp": "Following upは進捗確認の黄金フレーズです。"
+    "exp": "進捗確認の定番。相手を責めず『その後どうなりましたか？』と促す表現。"
+  },
+  {
+    "dialogue": "A: The system will be down all day.\nB: We must (  ) the clients of this issue immediately.",
+    "q": "We must (      ) the clients of this issue immediately.",
+    "a": "notify",
+    "choices": ["notify", "tell", "say", "announce"],
+    "exp": "公式な通知や連絡をする際、tellよりもプロフェッショナルな響きになります。"
+  },
+  {
+    "dialogue": "A: The price is a bit high for us.\nB: Is there any (  ) for maneuver on the total cost?",
+    "q": "Is there any (      ) for maneuver on the total cost?",
+    "a": "room",
+    "choices": ["room", "space", "area", "way"],
+    "exp": "Room for maneuverは『交渉の余地』を意味するイディオム。価格交渉の必須フレーズ。"
+  },
+  {
+    "dialogue": "A: I'm finished with the slides.\nB: Thanks. Could you (  ) me in on the latest changes?",
+    "q": "Could you (      ) me in on the latest changes?",
+    "a": "fill",
+    "choices": ["fill", "tell", "put", "show"],
+    "exp": "Fill someone inで『詳細を教える/情報を共有する』。状況をアップデートしてほしい時に。"
+  },
+  {
+    "dialogue": "A: I don't understand this graph.\nB: Let me (  ) down the numbers for you.",
+    "q": "Let me (      ) down the numbers for you.",
+    "a": "break",
+    "choices": ["break", "cut", "take", "split"],
+    "exp": "複雑な内容を分解して分かりやすく説明する際に使われる『Break down』。"
+  },
+  {
+    "dialogue": "A: We should wait for more data.\nB: I see your point, but we need to (  ) the issue now.",
+    "q": "I see your point, but we need to (      ) the issue now.",
+    "a": "address",
+    "choices": ["address", "talk", "see", "fix"],
+    "exp": "問題を『扱う/対処する』という非常に汎用性の高いビジネス動詞です。"
+  },
+  {
+    "dialogue": "A: I'm not sure if I can attend.\nB: Please (  ) us posted on your availability.",
+    "q": "Please (      ) us posted on your availability.",
+    "a": "keep",
+    "choices": ["keep", "stay", "leave", "make"],
+    "exp": "Keep someone postedで『状況を随時知らせる』。未確定な状況でよく使われます。"
+  },
+  {
+    "dialogue": "A: We need a decision by tomorrow.\nB: Let's (  ) on it and decide first thing in the morning.",
+    "q": "Let's (      ) on it and decide first thing in the morning.",
+    "a": "sleep",
+    "choices": ["sleep", "think", "wait", "stay"],
+    "exp": "Sleep on itは『一晩考えてから決める』という、焦って決断しない時の決まり文句。"
   }
 ]
