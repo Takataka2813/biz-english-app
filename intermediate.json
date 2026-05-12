@@ -1,0 +1,802 @@
+[
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: Your price is a bit high for us. / B: If you increase the order ( ), we could offer a 5% discount.",
+    "q": "If you increase the order ( ), we could offer a 5% discount.",
+    "a": "volume",
+    "choices": ["volume", "number", "size", "amount"],
+    "exp": "取引量には volume を使います。条件提示の基本です。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: We need this by Friday. / B: That's tight. We'd expect a ( ) in return.",
+    "q": "We'd expect a ( ) in return.",
+    "a": "concession",
+    "choices": ["concession", "present", "discount", "help"],
+    "exp": "concession（譲歩）。何かを受け入れる代わりに条件を出す際の重要語。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: Is this your final offer? / B: We might have some ( ) room if you extend the contract.",
+    "q": "We might have some ( ) room...",
+    "a": "wiggle",
+    "choices": ["wiggle", "walking", "moving", "space"],
+    "exp": "wiggle room で「交渉の余地／含み」を意味する慣用表現。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: I'm afraid we can't go any lower. / B: Then it seems we've reached an ( ).",
+    "q": "Then it seems we've reached an ( ).",
+    "a": "impasse",
+    "choices": ["impasse", "end", "stop", "agreement"],
+    "exp": "impasse（行き詰まり、デッドロック）。交渉が難航している状態。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: Let's find a ( ) ground. / B: I agree. Let's look at the terms again.",
+    "q": "Let's find a ( ) ground.",
+    "a": "middle",
+    "choices": ["middle", "center", "mutual", "fair"],
+    "exp": "find a middle ground で「妥協点を見つける」。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: Can you meet us ( ) on the shipping costs? / B: We can cover 50%.",
+    "q": "Can you meet us ( ) on the shipping costs?",
+    "a": "halfway",
+    "choices": ["halfway", "partly", "middle", "equally"],
+    "exp": "meet halfway で「歩み寄る（折半する）」。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: This term is ( ). / B: We understand. Let's remove it then.",
+    "q": "This term is ( ).",
+    "a": "non-negotiable",
+    "choices": ["non-negotiable", "hard", "fixed", "impossible"],
+    "exp": "non-negotiable（交渉の余地なし）。譲れない条件を指します。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: What is your ( ) line? / B: We cannot go below $10 per unit.",
+    "q": "What is your ( ) line?",
+    "a": "bottom",
+    "choices": ["bottom", "last", "end", "low"],
+    "exp": "bottom line で「最低限の条件／最終的な結論」。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: We'll ( ) the fee if you sign today. / B: That's a tempting offer.",
+    "q": "We'll ( ) the fee...",
+    "a": "waive",
+    "choices": ["waive", "delete", "stop", "free"],
+    "exp": "waive は「（権利や手数料を）放棄する、免除する」。"
+  },
+  {
+    "category": "01. ネゴシエーション・条件交渉",
+    "dialogue": "A: Let's ( ) it in writing. / B: I'll send the draft contract.",
+    "q": "Let's ( ) it in writing.",
+    "a": "put",
+    "choices": ["put", "write", "set", "make"],
+    "exp": "put it in writing で「書面に残す」。合意の際の必須フレーズ。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: What makes you different? / B: Our main ( ) is our 24/7 support.",
+    "q": "Our main ( ) is our 24/7 support.",
+    "a": "differentiator",
+    "choices": ["differentiator", "different", "point", "advantage"],
+    "exp": "differentiator（差別化要因）。競合との違いを強調する語。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: Is it worth the cost? / B: Absolutely. The ( ) on investment is high.",
+    "q": "The ( ) on investment is high.",
+    "a": "return",
+    "choices": ["return", "profit", "back", "income"],
+    "exp": "Return on Investment (ROI) 「投資利益率」。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: We need a solution that ( ) our needs. / B: Our software is fully customizable.",
+    "q": "We need a solution that ( ) our needs.",
+    "a": "addresses",
+    "choices": ["addresses", "says", "looks", "meets"],
+    "exp": "address one's needs で「ニーズに対応する」。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: How does this help us? / B: It will ( ) your workflow.",
+    "q": "It will ( ) your workflow.",
+    "a": "streamline",
+    "choices": ["streamline", "fast", "short", "cut"],
+    "exp": "streamline（簡素化する、効率化する）。提案での人気単語。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: Can you ( ) the benefits? / B: Certainly. First, it reduces costs...",
+    "q": "Can you ( ) the benefits?",
+    "a": "outline",
+    "choices": ["outline", "talk", "see", "show"],
+    "exp": "outline（概要を述べる）。要点を整理して伝える際に使います。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: We are looking for ( ) results. / B: You'll see an improvement in 30 days.",
+    "q": "We are looking for ( ) results.",
+    "a": "tangible",
+    "choices": ["tangible", "real", "hard", "touch"],
+    "exp": "tangible results（具体的な／目に見える成果）。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: Our product has a competitive ( ). / B: Tell me more about your pricing.",
+    "q": "Our product has a competitive ( ).",
+    "a": "edge",
+    "choices": ["edge", "side", "point", "power"],
+    "exp": "competitive edge で「競争優位性」。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: This feature is ( ) for large teams. / B: That sounds perfect for us.",
+    "q": "This feature is ( ) for large teams.",
+    "a": "tailored",
+    "choices": ["tailored", "made", "fixed", "good"],
+    "exp": "tailored to/for で「〜に合わせて作られた、特化した」。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: Let me ( ) you through the demo. / B: Please do.",
+    "q": "Let me ( ) you through the demo.",
+    "a": "walk",
+    "choices": ["walk", "show", "take", "go"],
+    "exp": "walk someone through で「〜を順を追って説明する」。"
+  },
+  {
+    "category": "02. 提案・売り込み（ピッチ）",
+    "dialogue": "A: What's the ( )? / B: You get three months free if you join now.",
+    "q": "What's the ( )?",
+    "a": "incentive",
+    "choices": ["incentive", "gift", "money", "reason"],
+    "exp": "incentive（動機付け、特典）。購買意欲を高める施策のこと。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: ( ) to my email sent yesterday, I'm waiting for your reply.",
+    "q": "( ) to my email sent yesterday...",
+    "a": "Further",
+    "choices": ["Further", "Follow", "Back", "Next"],
+    "exp": "Further to... は「〜の件ですが（追伸）」と催促する際の手法。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: We ( ) to inform you that the event is canceled. / B: That's a shame.",
+    "q": "We ( ) to inform you that...",
+    "a": "regret",
+    "choices": ["regret", "sorry", "sad", "unhappy"],
+    "exp": "「残念ながら〜をお知らせします」というフォーマルな断り。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: I'm writing ( ) behalf of Mr. Smith. / B: Thank you for reaching out.",
+    "q": "I'm writing ( ) behalf of Mr. Smith.",
+    "a": "on",
+    "choices": ["on", "in", "at", "by"],
+    "exp": "on behalf of で「〜を代表して、〜の代わりに」。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: Please ( ) the receipt for your records. / B: Got it.",
+    "q": "Please ( ) the receipt...",
+    "a": "retain",
+    "choices": ["retain", "keep", "have", "stay"],
+    "exp": "retain（保持する）。keepよりもフォーマルな事務表現。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: Could you ( ) the receipt of this email? / B: Yes, I'll reply now.",
+    "q": "Could you ( ) the receipt of this email?",
+    "a": "acknowledge",
+    "choices": ["acknowledge", "know", "see", "tell"],
+    "exp": "acknowledge receipt で「受領を確認する」。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: Please ( ) the attached document. / B: I'll review it today.",
+    "q": "Please ( ) the attached document.",
+    "a": "find",
+    "choices": ["find", "see", "look", "get"],
+    "exp": "Please find attached... は「添付書類をご確認ください」の定型句。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: Thank you for your ( ) attention to this matter. / B: You're welcome.",
+    "q": "Thank you for your ( ) attention...",
+    "a": "prompt",
+    "choices": ["prompt", "fast", "soon", "quick"],
+    "exp": "prompt（迅速な）。ビジネスメールでの感謝の定番形容詞。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: ( ) to our conversation, I'm sending the files. / B: Thanks.",
+    "q": "( ) to our conversation...",
+    "a": "Following up",
+    "choices": ["Following up", "After", "Next", "Back"],
+    "exp": "Following up to で「先ほどの会話の続きですが」。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: Your ( ) in this matter is greatly appreciated. / B: No problem.",
+    "q": "Your ( ) in this matter is greatly appreciated.",
+    "a": "cooperation",
+    "choices": ["cooperation", "help", "work", "talk"],
+    "exp": "「ご協力に感謝します」のフォーマルな言い回し。"
+  },
+  {
+    "category": "03. メール文書の作成",
+    "dialogue": "A: I'll ( ) you updated on any changes. / B: Please do.",
+    "q": "I'll ( ) you updated...",
+    "a": "keep",
+    "choices": ["keep", "stay", "make", "be"],
+    "exp": "keep someone updated で「常に最新情報を伝える」。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: How are the sales? / B: They have remained ( ) for three months.",
+    "q": "They have remained ( ) for three months.",
+    "a": "steady",
+    "choices": ["steady", "stop", "same", "flat"],
+    "exp": "steady（着実な、安定した）。グラフ説明で多用されます。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: The costs ( ) for 40% of the budget. / B: That's a lot.",
+    "q": "The costs ( ) for 40%...",
+    "a": "account",
+    "choices": ["account", "make", "be", "take"],
+    "exp": "account for で「〜の割合を占める」。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: There was a ( ) drop in users last week. / B: Was it a server issue?",
+    "q": "There was a ( ) drop in users.",
+    "a": "sharp",
+    "choices": ["sharp", "hard", "big", "fast"],
+    "exp": "sharp drop で「急激な下落」。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: Sales ( ) in December due to the holiday. / B: That's expected.",
+    "q": "Sales ( ) in December...",
+    "a": "peaked",
+    "choices": ["peaked", "topped", "highed", "uped"],
+    "exp": "peak（最高潮に達する）。動詞として使われます。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: We need to ( ) the data before the meeting. / B: I'll prepare the report.",
+    "q": "We need to ( ) the data...",
+    "a": "analyze",
+    "choices": ["analyze", "look", "think", "check"],
+    "exp": "analyze（分析する）。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: Profits are ( ) to double next year. / B: That's very optimistic.",
+    "q": "Profits are ( ) to double...",
+    "a": "projected",
+    "choices": ["projected", "looked", "thought", "said"],
+    "exp": "projected to で「〜と予測されている」。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: Let's ( ) these two charts. / B: One shows growth, the other shows cost.",
+    "q": "Let's ( ) these two charts.",
+    "a": "compare",
+    "choices": ["compare", "see", "match", "look"],
+    "exp": "compare（比較する）。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: There is a ( ) towards online shopping. / B: Yes, it's growing every year.",
+    "q": "There is a ( ) towards online shopping.",
+    "a": "trend",
+    "choices": ["trend", "way", "habit", "move"],
+    "exp": "trend（傾向）。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: The numbers ( ) slightly every month. / B: As long as it's not a big drop, it's fine.",
+    "q": "The numbers ( ) slightly...",
+    "a": "fluctuate",
+    "choices": ["fluctuate", "change", "move", "go"],
+    "exp": "fluctuate（（数値が）変動する、上下する）。"
+  },
+  {
+    "category": "04. データ・数字の説明",
+    "dialogue": "A: To ( ) it, our revenue is up by 10%. / B: Good job.",
+    "q": "To ( ) it, our revenue is up...",
+    "a": "summarize",
+    "choices": ["summarize", "say", "short", "end"],
+    "exp": "summarize（要約する）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: What's our ( ) B if this fails? / B: We'll revert to the old version.",
+    "q": "What's our ( ) B if this fails?",
+    "a": "plan",
+    "choices": ["plan", "idea", "way", "option"],
+    "exp": "Plan B（代替案）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: We need to ( ) these tasks. / B: I'll start with the most urgent one.",
+    "q": "We need to ( ) these tasks.",
+    "a": "prioritize",
+    "choices": ["prioritize", "order", "make", "rank"],
+    "exp": "prioritize（優先順位をつける）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: Let's ( ) all the possible risks. / B: I'll make a list.",
+    "q": "Let's ( ) all the possible risks.",
+    "a": "evaluate",
+    "choices": ["evaluate", "see", "think", "look"],
+    "exp": "evaluate（評価する）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: What is the ( ) of this delay? / B: It's a lack of staff.",
+    "q": "What is the ( ) of this delay?",
+    "a": "implication",
+    "choices": ["implication", "result", "end", "meaning"],
+    "exp": "implication（（予想される）影響、含み）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: We need to ( ) a consensus. / B: Let's vote then.",
+    "q": "We need to ( ) a consensus.",
+    "a": "reach",
+    "choices": ["reach", "get", "make", "do"],
+    "exp": "reach a consensus で「合意に達する」。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: That's a ( ) solution for now. / B: We need a permanent one later.",
+    "q": "That's a ( ) solution for now.",
+    "a": "temporary",
+    "choices": ["temporary", "short", "fast", "quick"],
+    "exp": "temporary（一時的な）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: Let's ( ) the pros and cons. / B: Good idea. Let's start with the pros.",
+    "q": "Let's ( ) the pros and cons.",
+    "a": "weigh",
+    "choices": ["weigh", "think", "count", "see"],
+    "exp": "weigh the pros and cons で「メリットとデメリットを比較検討する」。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: We have to ( ) to the original plan. / B: Why? Is there a problem?",
+    "q": "We have to ( ) to the original plan.",
+    "a": "stick",
+    "choices": ["stick", "keep", "stay", "hold"],
+    "exp": "stick to で「（方針などを）変えずに守る」。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: It's a ( ) decision. / B: I know, but we have to choose one.",
+    "q": "It's a ( ) decision.",
+    "a": "tough",
+    "choices": ["tough", "hard", "heavy", "big"],
+    "exp": "tough decision（難しい決断）。"
+  },
+  {
+    "category": "05. 問題解決・意思決定",
+    "dialogue": "A: Who has the ( ) say on this? / B: The CEO does.",
+    "q": "Who has the ( ) say on this?",
+    "a": "final",
+    "choices": ["final", "last", "big", "main"],
+    "exp": "final say で「最終決定権」。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: I have a proven ( ) record in sales. / B: Impressive. Tell me more.",
+    "q": "I have a proven ( ) record...",
+    "a": "track",
+    "choices": ["track", "past", "work", "life"],
+    "exp": "track record（実績）。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: We are looking for a ( ) for this role. / B: How about Sarah?",
+    "q": "We are looking for a ( ) for this role.",
+    "a": "candidate",
+    "choices": ["candidate", "person", "worker", "user"],
+    "exp": "candidate（候補者）。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: What are your ( )? / B: I'm good at problem-solving and coding.",
+    "q": "What are your ( )?",
+    "a": "strengths",
+    "choices": ["strengths", "goods", "powers", "points"],
+    "exp": "strengths（強み）。面接の定番質問。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: Do you have any ( ) from your previous job? / B: Yes, my old manager wrote one.",
+    "q": "Do you have any ( )?",
+    "a": "references",
+    "choices": ["references", "letters", "papers", "notes"],
+    "exp": "references（推薦状、照会先）。採用で重視されます。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: Your performance has been ( ). / B: Thank you, I worked hard.",
+    "q": "Your performance has been ( ).",
+    "a": "outstanding",
+    "choices": ["outstanding", "good", "nice", "big"],
+    "exp": "outstanding（傑出した、非常に優れた）。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: We need to ( ) new employees. / B: Let's start the interview process.",
+    "q": "We need to ( ) new employees.",
+    "a": "recruit",
+    "choices": ["recruit", "get", "take", "have"],
+    "exp": "recruit（採用する、募集する）。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: What is the ( ) for this position? / B: It's $50,000 per year.",
+    "q": "What is the ( ) for this position?",
+    "a": "salary",
+    "choices": ["salary", "money", "pay", "cost"],
+    "exp": "salary（給与）。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: How do you handle ( )? / B: I try to learn from it and improve.",
+    "q": "How do you handle ( )?",
+    "a": "criticism",
+    "choices": ["criticism", "bad", "talk", "angry"],
+    "exp": "criticism（批判）。フィードバックへの姿勢を問う質問。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: He was ( ) to senior manager last month. / B: He deserves it.",
+    "q": "He was ( ) to senior manager...",
+    "a": "promoted",
+    "choices": ["promoted", "uped", "moved", "made"],
+    "exp": "promote（昇進させる）。"
+  },
+  {
+    "category": "06. 採用・人事・評価",
+    "dialogue": "A: We provide ( ) for all new staff. / B: That's great for their growth.",
+    "q": "We provide ( ) for all new staff.",
+    "a": "mentorship",
+    "choices": ["mentorship", "teacher", "help", "friend"],
+    "exp": "mentorship（メンター制度）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: Is the project on track? / B: Yes, we hit a major ( ).",
+    "q": "Yes, we hit a major ( ).",
+    "a": "milestone",
+    "choices": ["milestone", "goal", "step", "point"],
+    "exp": "milestone（重要な節目）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: What is the ( ) for this task? / B: It must be finished by Friday.",
+    "q": "What is the ( ) for this task?",
+    "a": "deadline",
+    "choices": ["deadline", "end", "time", "finish"],
+    "exp": "deadline（締め切り）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: We are ( ) schedule. / B: We need to speed up.",
+    "q": "We are ( ) schedule.",
+    "a": "behind",
+    "choices": ["behind", "after", "late", "back"],
+    "exp": "behind schedule（予定より遅れて）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: Who is ( ) for this part? / B: John is the lead developer.",
+    "q": "Who is ( ) for this part?",
+    "a": "responsible",
+    "choices": ["responsible", "duty", "job", "main"],
+    "exp": "responsible for で「〜に責任がある、〜の担当である」。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: Let's ( ) the progress in the next meeting. / B: I'll prepare the slides.",
+    "q": "Let's ( ) the progress...",
+    "a": "review",
+    "choices": ["review", "see", "check", "look"],
+    "exp": "review（再検討する、振り返る）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: We need to allocate more ( ) to this project. / B: I'll talk to the finance team.",
+    "q": "We need to allocate more ( )...",
+    "a": "resources",
+    "choices": ["resources", "things", "helps", "people"],
+    "exp": "resources（リソース、資源）。人・モノ・金を指します。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: The project ( ) has changed. / B: Again? We need more time then.",
+    "q": "The project ( ) has changed.",
+    "a": "scope",
+    "choices": ["scope", "area", "size", "plan"],
+    "exp": "scope（（業務の）範囲）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: We are ( ) budget. / B: Great, let's keep it that way.",
+    "q": "We are ( ) budget.",
+    "a": "under",
+    "choices": ["under", "below", "down", "in"],
+    "exp": "under budget（予算内で）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: Can you give me an ( )? / B: Yes, everything is going well.",
+    "q": "Can you give me an ( )?",
+    "a": "update",
+    "choices": ["update", "info", "news", "talk"],
+    "exp": "update（最新状況）。"
+  },
+  {
+    "category": "07. プロジェクト管理",
+    "dialogue": "A: Let's ( ) a kickoff meeting. / B: How about next Monday?",
+    "q": "Let's ( ) a kickoff meeting.",
+    "a": "hold",
+    "choices": ["hold", "do", "make", "take"],
+    "exp": "hold a meeting で「会議を開く」。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: I'm upset about the delay. / B: We are looking into the ( ) cause.",
+    "q": "We are looking into the ( ) cause.",
+    "a": "root",
+    "choices": ["root", "main", "first", "real"],
+    "exp": "root cause（根本原因）。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: I want a refund. / B: Let me check our ( ).",
+    "q": "Let me check our ( ).",
+    "a": "policy",
+    "choices": ["policy", "rule", "law", "way"],
+    "exp": "policy（規定、方針）。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: This is not what I ordered. / B: I ( ) for the mistake. We'll replace it.",
+    "q": "I ( ) for the mistake.",
+    "a": "apologize",
+    "choices": ["apologize", "sorry", "sad", "regret"],
+    "exp": "apologize（謝罪する）。ビジネスでの基本。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: How will you ( ) this? / B: We'll send a technician today.",
+    "q": "How will you ( ) this?",
+    "a": "resolve",
+    "choices": ["resolve", "fix", "do", "end"],
+    "exp": "resolve（解決する）。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: I've been waiting for an hour. / B: Thank you for your ( ). We're almost ready.",
+    "q": "Thank you for your ( ).",
+    "a": "patience",
+    "choices": ["patience", "waiting", "time", "kind"],
+    "exp": "patience（忍耐、根気）。待たせた相手への言葉。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: The product is ( ). / B: We'll send a replacement immediately.",
+    "q": "The product is ( ).",
+    "a": "defective",
+    "choices": ["defective", "bad", "broken", "wrong"],
+    "exp": "defective（欠陥のある）。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: I'm not ( ) with the service. / B: I'm sorry to hear that. How can we improve?",
+    "q": "I'm not ( ) with the service.",
+    "a": "satisfied",
+    "choices": ["satisfied", "happy", "good", "okay"],
+    "exp": "satisfied with で「〜に満足している」。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: Can I speak to the manager? / B: He is ( ) right now. Can I help?",
+    "q": "He is ( ) right now.",
+    "a": "unavailable",
+    "choices": ["unavailable", "busy", "away", "gone"],
+    "exp": "unavailable（対応できない）。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: This is the third time this happened. / B: We take your ( ) very seriously.",
+    "q": "We take your ( ) very seriously.",
+    "a": "feedback",
+    "choices": ["feedback", "talk", "word", "voice"],
+    "exp": "feedback（意見、感想）。"
+  },
+  {
+    "category": "08. クレーム処理・顧客対応",
+    "dialogue": "A: I'll ( ) this to my supervisor. / B: Thank you.",
+    "q": "I'll ( ) this to my supervisor.",
+    "a": "escalate",
+    "choices": ["escalate", "tell", "show", "give"],
+    "exp": "escalate（（上司などに）報告する、段階を引き上げる）。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: His feedback was very ( ). / B: Yes, he avoids direct 'No'.",
+    "q": "His feedback was very ( ).",
+    "a": "subtle",
+    "choices": ["subtle", "clear", "loud", "hard"],
+    "exp": "subtle（微妙な、遠回しな）。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: We need to be ( ) of local customs. / B: True, let's do some research.",
+    "q": "We need to be ( ) of local customs.",
+    "a": "mindful",
+    "choices": ["mindful", "know", "care", "think"],
+    "exp": "mindful of で「〜に留意している、配慮している」。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: Is there a ( ) barrier? / B: A little, but we use simple English.",
+    "q": "Is there a ( ) barrier?",
+    "a": "language",
+    "choices": ["language", "talk", "word", "speak"],
+    "exp": "language barrier（言葉の壁）。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: They value ( ) over speed. / B: We should not rush the decision then.",
+    "q": "They value ( ) over speed.",
+    "a": "harmony",
+    "choices": ["harmony", "peace", "group", "team"],
+    "exp": "harmony（調和、和）。日本などのビジネス文化の特徴。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: What is the ( ) for business attire? / B: Usually, it's business casual.",
+    "q": "What is the ( ) for business attire?",
+    "a": "norm",
+    "choices": ["norm", "rule", "way", "habit"],
+    "exp": "norm（標準、慣習）。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: We should avoid ( ) during the meeting. / B: Good point, it might be confusing.",
+    "q": "We should avoid ( ) during the meeting.",
+    "a": "jargon",
+    "choices": ["jargon", "words", "talk", "English"],
+    "exp": "jargon（専門用語）。多国籍チームでは避けるべきもの。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: Punctuality is ( ) here. / B: I'll make sure to arrive early.",
+    "q": "Punctuality is ( ) here.",
+    "a": "crucial",
+    "choices": ["crucial", "good", "nice", "fine"],
+    "exp": "crucial（極めて重要な）。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: Let's ( ) our expectations. / B: Yes, let's make sure we mean the same thing.",
+    "q": "Let's ( ) our expectations.",
+    "a": "align",
+    "choices": ["align", "match", "make", "fix"],
+    "exp": "align（一致させる、調整する）。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: This is a ( ) situation for everyone. / B: I agree, nobody wins.",
+    "q": "This is a ( ) situation...",
+    "a": "lose-lose",
+    "choices": ["lose-lose", "bad-bad", "no-no", "fail-fail"],
+    "exp": "lose-lose（共倒れの）。win-winの反対。"
+  },
+  {
+    "category": "09. 異文化・グローバルビジネス",
+    "dialogue": "A: We need to ( ) the gap between our offices. / B: Communication is key.",
+    "q": "We need to ( ) the gap...",
+    "a": "bridge",
+    "choices": ["bridge", "close", "fill", "stop"],
+    "exp": "bridge the gap で「溝を埋める、橋渡しをする」。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: I need to do some ( ) to get support. / B: Good luck with the stakeholders.",
+    "q": "I need to do some ( )...",
+    "a": "groundwork",
+    "choices": ["groundwork", "homework", "netplay", "politics"],
+    "exp": "groundwork（下準備、根回し）。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: I want to ( ) for the manager position. / B: You have my support.",
+    "q": "I want to ( ) for the manager position.",
+    "a": "apply",
+    "choices": ["apply", "go", "take", "ask"],
+    "exp": "apply for で「〜に応募する、志願する」。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: She is very ( ). / B: Yes, she wants to be the CEO one day.",
+    "q": "She is very ( ).",
+    "a": "ambitious",
+    "choices": ["ambitious", "high", "strong", "hard"],
+    "exp": "ambitious（野心的な）。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: I need to ( ) my skills. / B: Why not take an online course?",
+    "q": "I need to ( ) my skills.",
+    "a": "upgrade",
+    "choices": ["upgrade", "better", "high", "make"],
+    "exp": "upgrade one's skills で「スキルを向上させる」。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: Networking is ( ) for your career. / B: I should attend more events.",
+    "q": "Networking is ( ) for your career.",
+    "a": "essential",
+    "choices": ["essential", "good", "nice", "easy"],
+    "exp": "essential（不可欠な）。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: He has a lot of ( ) in the company. / B: Everyone listens to him.",
+    "q": "He has a lot of ( ) in the company.",
+    "a": "influence",
+    "choices": ["influence", "power", "money", "talk"],
+    "exp": "influence（影響力）。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: I'm looking for a better work-life ( ). / B: Many people are these days.",
+    "q": "I'm looking for a better work-life ( ).",
+    "a": "balance",
+    "choices": ["balance", "match", "time", "way"],
+    "exp": "work-life balance（仕事と生活の調和）。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: You need to ( ) for yourself. / B: I'll ask for a raise tomorrow.",
+    "q": "You need to ( ) for yourself.",
+    "a": "advocate",
+    "choices": ["advocate", "talk", "say", "speak"],
+    "exp": "advocate for oneself で「自分の正当性を主張する、自己弁護する」。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: There are many ( ) for growth here. / B: That's why I joined.",
+    "q": "There are many ( ) for growth.",
+    "a": "opportunities",
+    "choices": ["opportunities", "ways", "chances", "points"],
+    "exp": "opportunities（機会）。"
+  },
+  {
+    "category": "10. キャリア・社内政治",
+    "dialogue": "A: I'm ( ) a new challenge. / B: Good for you!",
+    "q": "I'm ( ) a new challenge.",
+    "a": "seeking",
+    "choices": ["seeking", "looking", "taking", "doing"],
+    "exp": "seek（追い求める）。"
+  }
+]
