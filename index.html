@@ -3,166 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizPro - ビジネス英語クイズ</title>
+    <title>BizPro English</title>
     <style>
-        :root {
-            --primary-color: #1a73e8; /* 初級用 */
-            --intermediate-color: #34a853; /* 中級用 */
-            --advanced-color: #ea4335; /* 上級用 */
-            --bg-color: #f0f2f5;
-            --correct-color: #d4edda;
-            --wrong-color: #f8d7da;
-        }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg-color); display: flex; justify-content: center; padding: 20px; margin: 0; }
-        #app { background: white; width: 100%; max-width: 550px; padding: 30px; border-radius: 16px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        body { font-family: sans-serif; background-color: #f4f7f6; display: flex; justify-content: center; padding: 20px; }
+        #app { background: white; width: 100%; max-width: 500px; padding: 20px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { text-align: center; color: #2c3e50; font-size: 24px; }
         .hidden { display: none; }
-        h1 { font-size: 1.6rem; color: #333; text-align: center; margin-bottom: 5px; }
-        .subtitle { text-align: center; color: #666; font-size: 0.9rem; margin-bottom: 25px; }
-        
-        /* ボタン共通スタイル */
-        .btn { display: block; width: 100%; padding: 15px; margin: 12px 0; border: none; border-radius: 10px; cursor: pointer; font-size: 1rem; transition: all 0.2s; font-weight: bold; }
-        
-        /* レベル別ボタンデザイン */
-        .level-btn { background: white; border: 2px solid #ddd; text-align: left; position: relative; padding-left: 20px; }
-        .level-btn:hover:not(:disabled) { transform: scale(1.02); border-color: #999; }
-        .level-btn.beginner { border-left: 8px solid var(--primary-color); color: var(--primary-color); }
-        .level-btn.intermediate { border-left: 8px solid var(--intermediate-color); color: var(--intermediate-color); }
-        .level-btn.advanced { border-left: 8px solid var(--advanced-color); color: var(--advanced-color); }
-        .level-btn:disabled { opacity: 0.5; cursor: not-allowed; filter: grayscale(1); }
-        
-        /* 選択肢ボタン */
-        .choice-btn { background: #fff; border: 1px solid #ddd; text-align: left; padding: 15px; font-weight: normal; }
-        .choice-btn:hover:not(:disabled) { background: #f8f9fa; border-color: #bbb; }
-        
-        /* 正解・不正解 */
-        .correct { background: var(--correct-color) !important; border-color: #c3e6cb !important; color: #155724; }
-        .wrong { background: var(--wrong-color) !important; border-color: #f5c6cb !important; color: #721c24; }
-        
-        /* コンテンツエリア */
-        #explanation { background: #fff3cd; padding: 20px; border-radius: 10px; margin-top: 20px; border-left: 5px solid #ffeeba; }
-        .progress-bar { font-size: 0.85rem; color: #888; display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eee; }
-        .category-tag { display: inline-block; background: #eee; color: #444; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; margin-bottom: 10px; font-weight: bold; }
-        .dialogue-box { background: #fdfdfd; padding: 18px; border-radius: 8px; margin-bottom: 15px; font-style: italic; line-height: 1.5; color: #333; border: 1px solid #eee; }
+        button { 
+            display: block; width: 100%; padding: 15px; margin: 10px 0; 
+            font-size: 16px; cursor: pointer; border-radius: 10px; border: none; 
+            background-color: #3498db; color: white; transition: 0.3s;
+        }
+        button:hover { background-color: #2980b9; }
+        .theme-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+        .choice-btn { background-color: #ecf0f1; color: #2c3e50; text-align: left; }
+        .choice-btn:hover { background-color: #bdc3c7; }
+        .correct { background-color: #2ecc71 !important; color: white; }
+        .wrong { background-color: #e74c3c !important; color: white; }
+        #feedback { margin-top: 15px; padding: 15px; border-radius: 8px; line-height: 1.5; border-left: 5px solid #3498db; background: #f9f9f9; }
+        .progress { text-align: center; font-size: 14px; color: #7f8c8d; margin-bottom: 10px; }
     </style>
 </head>
 <body>
 
 <div id="app">
     <h1>BizPro English</h1>
-    <div class="subtitle">実戦ビジネス英語マスター</div>
 
-    <!-- レベル選択画面 -->
-    <div id="level-select">
-        <button class="btn level-btn beginner" onclick="startQuiz('beginner.json', '初級')">
-            初級コース <small style="display:block; font-weight:normal; color:#666;">基本フレーズ・電話・来客対応</small>
-        </button>
-        <button class="btn level-btn intermediate" onclick="startQuiz('intermediate.json', '中級')">
-            中級コース <small style="display:block; font-weight:normal; color:#666;">交渉・ピッチ・データ説明・管理</small>
-        </button>
-        <button class="btn level-btn advanced" onclick="startQuiz('advanced.json', '上級')">
-            上級コース <small style="display:block; font-weight:normal; color:#666;">経営戦略・IR・危機管理・リーダーシップ</small>
-        </button>
+    <!-- 1. コース選択画面 -->
+    <div id="course-screen">
+        <p style="text-align:center;">難易度を選んでください</p>
+        <button onclick="selectCourse('beginner')">初級 (Beginner)</button>
+        <button onclick="selectCourse('intermediate')">中級 (Intermediate)</button>
+        <button onclick="selectCourse('advanced')">上級 (Advanced)</button>
     </div>
 
-    <!-- クイズ画面 -->
-    <div id="quiz-container" class="hidden">
-        <div class="progress-bar">
-            <span>Level: <b id="current-level-name">-</b></span>
-            <span>Question: <b id="q-number">1</b> / <span class="total-q">100</span></span>
-        </div>
-        <div id="category" class="category-tag"></div>
-        <div id="dialogue" class="dialogue-box"></div>
-        <div id="question-text" style="font-size:1.1rem; margin-bottom:20px; font-weight:bold; line-height:1.4;"></div>
-        
+    <!-- 2. テーマ選択画面 -->
+    <div id="theme-screen" class="hidden">
+        <h2 id="selected-level-title" style="text-align:center; font-size: 18px;"></h2>
+        <div id="theme-list" class="theme-grid"></div>
+        <button onclick="backToCourse()" style="background-color:#95a5a6;">戻る</button>
+    </div>
+
+    <!-- 3. クイズ画面 -->
+    <div id="quiz-screen" class="hidden">
+        <div class="progress">Question <span id="current-idx">1</span> / <span id="total-idx">10</span></div>
+        <p id="dialogue" style="font-style: italic; color: #7f8c8d; margin-bottom: 5px;"></p>
+        <p id="question-text" style="font-weight: bold; font-size: 18px; margin-top: 0;"></p>
         <div id="choices"></div>
-
-        <div id="explanation" class="hidden">
-            <strong>💡 解説</strong>
-            <p id="exp-text" style="margin: 10px 0; line-height: 1.5;"></p>
-            <button class="btn" style="background:#333; color:white;" onclick="nextQuestion()">Next Question →</button>
+        <div id="feedback" class="hidden">
+            <strong id="result-text"></strong><br>
+            <span id="explanation"></span>
+            <button id="next-btn" onclick="nextQuestion()">次へ</button>
         </div>
     </div>
 
-    <!-- 結果画面 -->
-    <div id="result-screen" class="hidden" style="text-align:center;">
-        <h2>Performance Report</h2>
-        <p style="font-size:1.1rem; color:#666;">あなたのスコア</p>
-        <div style="font-size:3.5rem; font-weight:bold; color:var(--primary-color); margin: 15px 0;">
-            <span id="final-score"></span> <small style="font-size:1rem; color:#999;">/ <span class="total-q">100</span></small>
-        </div>
-        <p id="result-comment" style="line-height:1.6; margin-bottom: 30px;"></p>
-        <button class="btn level-btn" style="text-align:center; padding-left:0;" onclick="location.reload()">タイトルに戻る</button>
+    <!-- 4. 結果画面 -->
+    <div id="result-screen" class="hidden">
+        <h2 style="text-align:center;">結果発表</h2>
+        <p id="final-score" style="text-align:center; font-size: 24px; font-weight: bold;"></p>
+        <button onclick="location.reload()">タイトルに戻る</button>
     </div>
 </div>
 
 <script>
     let allData = [];
+    let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
-    let currentLevel = "";
 
-    async function startQuiz(fileName, levelName) {
+    // コースを選択してJSONを読み込む
+    async function selectCourse(level) {
         try {
-            const response = await fetch(`data/${fileName}`);
-            if (!response.ok) throw new Error("File not found");
+            const response = await fetch(`${level}.json`);
             allData = await response.json();
             
-            // 全100問設定だが、JSONの件数に合わせる
-            const totalElems = document.querySelectorAll('.total-q');
-            totalElems.forEach(el => el.innerText = allData.length);
-
-            allData.sort(() => Math.random() - 0.5);
-            currentLevel = levelName;
-            document.getElementById('current-level-name').innerText = levelName;
+            document.getElementById('course-screen').classList.add('hidden');
+            document.getElementById('theme-screen').classList.remove('hidden');
+            document.getElementById('selected-level-title').innerText = level.toUpperCase() + " コース";
             
-            document.getElementById('level-select').classList.add('hidden');
-            document.getElementById('quiz-container').classList.remove('hidden');
-            
-            showQuestion();
-        } catch (error) {
-            alert(levelName + "のデータ（data/" + fileName + "）が見つかりません。ファイルを先に作成してください。");
+            generateThemeButtons();
+        } catch (e) {
+            alert("データの読み込みに失敗しました。");
         }
     }
 
+    // テーマボタンを動的に生成
+    function generateThemeButtons() {
+        const themeList = document.getElementById('theme-list');
+        themeList.innerHTML = "";
+        
+        // カテゴリの重複を除去してリスト化
+        const categories = [...new Set(allData.map(q => q.category))];
+        
+        categories.forEach(cat => {
+            const btn = document.createElement('button');
+            btn.className = "choice-btn";
+            btn.innerText = cat;
+            btn.onclick = () => startQuiz(cat);
+            themeList.appendChild(btn);
+        });
+
+        // 全件ランダムボタン
+        const allBtn = document.createElement('button');
+        allBtn.innerText = "すべてのテーマからランダムに出題";
+        allBtn.onclick = () => startQuiz('ALL');
+        themeList.appendChild(allBtn);
+    }
+
+    // クイズ開始
+    function startQuiz(category) {
+        if (category === 'ALL') {
+            currentQuestions = [...allData];
+        } else {
+            currentQuestions = allData.filter(q => q.category === category);
+        }
+
+        // シャッフル
+        currentQuestions.sort(() => Math.random() - 0.5);
+        // 最大10問に制限（お好みで調整してください）
+        currentQuestions = currentQuestions.slice(0, 10);
+
+        currentIndex = 0;
+        score = 0;
+
+        document.getElementById('theme-screen').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.remove('hidden');
+        showQuestion();
+    }
+
     function showQuestion() {
-        const data = allData[currentIndex];
-        document.getElementById('q-number').innerText = currentIndex + 1;
-        document.getElementById('category').innerText = data.category;
-        document.getElementById('dialogue').innerText = data.dialogue;
-        document.getElementById('question-text').innerText = data.q;
-        document.getElementById('explanation').classList.add('hidden');
+        const q = currentQuestions[currentIndex];
+        document.getElementById('current-idx').innerText = currentIndex + 1;
+        document.getElementById('total-idx').innerText = currentQuestions.length;
+        document.getElementById('dialogue').innerText = q.dialogue;
+        document.getElementById('question-text').innerText = q.q;
+        document.getElementById('feedback').classList.add('hidden');
         
         const choicesDiv = document.getElementById('choices');
-        choicesDiv.innerHTML = '';
-
-        data.choices.forEach(choice => {
+        choicesDiv.innerHTML = "";
+        
+        q.choices.forEach(choice => {
             const btn = document.createElement('button');
-            btn.className = 'btn choice-btn';
+            btn.className = "choice-btn";
             btn.innerText = choice;
-            btn.onclick = () => checkAnswer(btn, choice, data.a);
+            btn.onclick = () => checkAnswer(choice, btn);
             choicesDiv.appendChild(btn);
         });
     }
 
-    function checkAnswer(btn, selected, correct) {
-        const buttons = document.querySelectorAll('.choice-btn');
-        buttons.forEach(b => b.disabled = true);
+    function checkAnswer(selected, btn) {
+        const q = currentQuestions[currentIndex];
+        const allBtns = document.querySelectorAll('#choices button');
+        allBtns.forEach(b => b.disabled = true);
 
-        if (selected === correct) {
+        if (selected === q.a) {
             btn.classList.add('correct');
+            document.getElementById('result-text').innerText = "✅ 正解！";
             score++;
         } else {
             btn.classList.add('wrong');
-            buttons.forEach(b => { if(b.innerText === correct) b.classList.add('correct'); });
+            document.getElementById('result-text').innerText = "❌ 不正解...";
+            // 正解のボタンをハイライト
+            allBtns.forEach(b => {
+                if(b.innerText === q.a) b.classList.add('correct');
+            });
         }
 
-        document.getElementById('exp-text').innerText = allData[currentIndex].exp;
-        document.getElementById('explanation').classList.remove('hidden');
+        document.getElementById('explanation').innerText = q.exp;
+        document.getElementById('feedback').classList.remove('hidden');
     }
 
     function nextQuestion() {
         currentIndex++;
-        if (currentIndex < allData.length) {
+        if (currentIndex < currentQuestions.length) {
             showQuestion();
         } else {
             showResult();
@@ -170,18 +183,14 @@
     }
 
     function showResult() {
-        document.getElementById('quiz-container').classList.add('hidden');
+        document.getElementById('quiz-screen').classList.add('hidden');
         document.getElementById('result-screen').classList.remove('hidden');
-        document.getElementById('final-score').innerText = score;
+        document.getElementById('final-score').innerText = `${currentQuestions.length}問中 ${score}問正解！`;
+    }
 
-        const ratio = score / allData.length;
-        let comment = "";
-        if(ratio === 1) comment = "完璧です！" + currentLevel + "レベルのビジネス英語を完全にマスターしました。";
-        else if(ratio >= 0.8) comment = "非常に優秀です。" + currentLevel + "レベルの表現を自信を持って使えます。";
-        else if(ratio >= 0.5) comment = "合格圏内です。間違えた語彙を復習して、さらに精度を高めましょう。";
-        else comment = "まずはこのレベルの頻出フレーズを繰り返し学習しましょう。";
-        
-        document.getElementById('result-comment').innerText = comment;
+    function backToCourse() {
+        document.getElementById('theme-screen').classList.add('hidden');
+        document.getElementById('course-screen').classList.remove('hidden');
     }
 </script>
 
