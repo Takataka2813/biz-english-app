@@ -3,50 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BizPRO - Refined Edition</title>
+    <title>BizPRO - Master Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f1f5f9;
-            -webkit-tap-highlight-color: transparent;
-        }
-
+        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; -webkit-tap-highlight-color: transparent; }
         .hidden { display: none; }
-
-        /* 滑らかな出現アニメーション */
-        .page-transition {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ほどよいグラスモーフィズム */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        /* 押し心地のフィードバック */
-        .btn-action {
-            transition: transform 0.1s ease, background-color 0.2s;
-        }
-        .btn-action:active {
-            transform: scale(0.97);
-        }
+        .page-transition { animation: fadeIn 0.3s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-action { transition: transform 0.1s ease, background-color 0.2s; }
+        .btn-action:active { transform: scale(0.97); }
+        /* 満点バッジのスタイル */
+        .perfect-badge { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 2px 8px; border-radius: 999px; font-size: 9px; font-weight: 800; text-transform: uppercase; }
     </style>
 </head>
 <body class="min-h-screen flex justify-center items-start sm:items-center">
 
     <div id="app" class="relative max-w-md w-full h-[100dvh] sm:h-[700px] bg-white sm:rounded-[2.5rem] shadow-xl overflow-hidden flex flex-col">
         
-        <!-- HEADER: コンパクトに整理 -->
         <header class="pt-10 pb-4 px-6 flex justify-between items-center bg-slate-900 text-white">
             <div>
                 <h1 class="text-xl font-bold tracking-tight">BizPRO<span class="text-indigo-400">.</span></h1>
@@ -55,7 +30,6 @@
             <div id="q-counter" class="text-[11px] font-mono bg-slate-800 px-3 py-1 rounded-full text-indigo-300 border border-slate-700"></div>
         </header>
 
-        <!-- PROGRESS BAR -->
         <div class="w-full h-1 bg-slate-800">
             <div id="top-progress" class="h-full bg-indigo-500 transition-all duration-500" style="width: 0%"></div>
         </div>
@@ -64,10 +38,11 @@
             
             <!-- 1. MENU SCREEN -->
             <div id="menu-screen" class="page-transition space-y-3">
-                <p class="text-[11px] font-bold text-slate-400 uppercase mb-4">Choose a Session</p>
-                <div id="category-list" class="grid gap-3">
-                    <!-- JS injection -->
+                <div class="flex justify-between items-center mb-4">
+                    <p class="text-[11px] font-bold text-slate-400 uppercase">Choose a Session</p>
+                    <button onclick="resetData()" class="text-[9px] text-slate-300 underline uppercase tracking-tighter">Reset Progress</button>
                 </div>
+                <div id="category-list" class="grid gap-3"></div>
             </div>
 
             <!-- 2. QUIZ SCREEN -->
@@ -75,12 +50,8 @@
                 <div id="dialogue-box" class="mb-6 p-4 bg-slate-50 rounded-2xl border-l-4 border-indigo-400 text-[14px] text-slate-600 leading-relaxed italic">
                     <p id="dialogue-text"></p>
                 </div>
-
                 <p id="question-text" class="text-lg font-bold text-slate-800 mb-6 px-1"></p>
-
-                <div id="choice-area" class="space-y-2 mt-auto">
-                    <!-- JS injection -->
-                </div>
+                <div id="choice-area" class="space-y-2 mt-auto"></div>
             </div>
 
             <!-- 3. FEEDBACK SCREEN -->
@@ -90,12 +61,10 @@
                         <h2 id="result-title" class="text-2xl font-black italic"></h2>
                         <button onclick="speakAnswer()" class="btn-action bg-white p-3 rounded-full shadow-sm border border-slate-100 text-lg">🔊</button>
                     </div>
-                    
                     <div class="mb-4 bg-white/50 p-4 rounded-xl">
                         <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Answer</p>
                         <p id="full-sentence" class="text-slate-900 font-bold text-md"></p>
                     </div>
-                    
                     <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Coach Notes</p>
                     <p id="explanation-text" class="text-[13px] text-slate-600 leading-relaxed"></p>
                 </div>
@@ -104,7 +73,7 @@
 
             <!-- 4. SUMMARY SCREEN -->
             <div id="summary-screen" class="hidden page-transition text-center py-10 my-auto">
-                <div class="text-5xl mb-4">🏁</div>
+                <div id="summary-emoji" class="text-5xl mb-4">🏁</div>
                 <h2 id="rank-title" class="text-3xl font-bold text-slate-900 mb-2"></h2>
                 <p id="summary-text" class="text-slate-500 mb-8"></p>
                 <button onclick="location.reload()" class="btn-action w-full bg-indigo-600 text-white py-5 rounded-2xl font-bold">RETURN TO MENU</button>
@@ -118,6 +87,10 @@
         let activePool = [];
         let currentIdx = 0;
         let score = 0;
+        let currentCategory = "";
+
+        // 進捗管理用：localStorageから取得
+        let progress = JSON.parse(localStorage.getItem('bizpro_progress')) || {};
 
         function speakAnswer() {
             const data = activePool[currentIdx];
@@ -141,11 +114,17 @@
             list.innerHTML = '';
             categories.forEach(cat => {
                 const count = allQuestions.filter(q => q.category === cat).length;
+                // 満点チェック
+                const isPerfect = progress[cat] === true;
+                
                 const btn = document.createElement('button');
-                btn.className = "btn-action w-full flex justify-between items-center p-5 bg-white border border-slate-200 rounded-2xl text-left shadow-sm hover:border-indigo-300";
+                btn.className = `btn-action w-full flex justify-between items-center p-5 bg-white border ${isPerfect ? 'border-amber-200 bg-amber-50/30' : 'border-slate-200'} rounded-2xl text-left shadow-sm hover:border-indigo-300`;
                 btn.innerHTML = `
                     <div>
-                        <span class="block font-bold text-slate-800 text-sm">${cat}</span>
+                        <div class="flex items-center gap-2">
+                            <span class="block font-bold text-slate-800 text-sm">${cat}</span>
+                            ${isPerfect ? '<span class="perfect-badge text-white">Done ✨</span>' : ''}
+                        </div>
                         <span class="text-[10px] text-slate-400 font-medium uppercase">${count} Questions</span>
                     </div>
                     <span class="text-slate-300 text-xs">❯</span>`;
@@ -155,6 +134,7 @@
         }
 
         function startQuiz(category) {
+            currentCategory = category;
             activePool = allQuestions.filter(q => q.category === category);
             currentIdx = 0; score = 0;
             document.getElementById('menu-screen').classList.add('hidden');
@@ -217,8 +197,25 @@
             document.getElementById('feedback-screen').classList.add('hidden');
             document.getElementById('summary-screen').classList.remove('hidden');
             document.getElementById('top-progress').style.width = "100%";
-            document.getElementById('rank-title').innerText = score === activePool.length ? "PERFECT!" : "COMPLETED";
+            
+            const isPerfect = score === activePool.length;
+            
+            // 満点なら進捗を保存
+            if(isPerfect) {
+                progress[currentCategory] = true;
+                localStorage.setItem('bizpro_progress', JSON.stringify(progress));
+            }
+
+            document.getElementById('summary-emoji').innerText = isPerfect ? "🥇" : "🏁";
+            document.getElementById('rank-title').innerText = isPerfect ? "PERFECT!" : "COMPLETED";
             document.getElementById('summary-text').innerText = `You got ${score} / ${activePool.length} correct.`;
+        }
+
+        function resetData() {
+            if(confirm("学習記録をリセットしますか？")) {
+                localStorage.removeItem('bizpro_progress');
+                location.reload();
+            }
         }
 
         loadData();
