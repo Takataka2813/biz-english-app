@@ -2,216 +2,363 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizPro English | Modern</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BizPro English | Premium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary: #4f46e5;
-            --primary-hover: #4338ca;
-            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
+            --primary-soft: rgba(79, 70, 229, 0.1);
+            --secondary: #9333ea;
+            --bg: #fdfdff;
             --surface: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
             --correct: #10b981;
-            --wrong: #ef4444;
+            --wrong: #f43f5e;
+            --nav-bg: rgba(255, 255, 255, 0.85);
+            --card-shadow: 0 8px 30px rgba(0,0,0,0.04);
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
             margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
             color: var(--text-main);
+            -webkit-tap-highlight-color: transparent;
         }
 
         #app {
             background: var(--surface);
-            width: 90%;
-            max-width: 450px;
-            min-height: 550px;
-            padding: 32px;
-            border-radius: 24px;
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            display: flex;
-            flex-direction: column;
+            width: 100%;
+            max-width: 480px;
+            min-height: 100vh;
+            padding-bottom: 90px;
+            box-sizing: border-box;
             position: relative;
-            overflow: hidden;
         }
 
-        h1 {
-            text-align: center;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            background: linear-gradient(to right, #4f46e5, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .screen {
+            padding: 30px 24px;
+            animation: slideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .subtitle {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 32px;
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hidden { display: none !important; }
 
-        /* Buttons */
-        button {
-            all: unset;
-            display: block;
-            width: 100%;
-            padding: 16px 0;
-            margin: 12px 0;
-            text-align: center;
-            background: #f3f4f6;
-            color: var(--text-main);
-            font-weight: 600;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-sizing: border-box;
+        /* Typography */
+        .brand {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px;
         }
 
-        button:hover { background: #e5e7eb; transform: translateY(-2px); }
-        
-        .btn-primary {
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 32px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Navigation Bar (Glassmorphism) */
+        .bottom-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 440px;
+            height: 64px;
+            background: var(--nav-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            z-index: 1000;
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: var(--text-muted);
+            cursor: pointer;
+            font-size: 10px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { font-size: 22px; transition: transform 0.2s; }
+        .nav-item.active .nav-icon { transform: translateY(-2px); }
+
+        /* Cards & Buttons */
+        .level-card {
+            background: var(--surface);
+            border: 1px solid #f1f5f9;
+            padding: 24px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .level-card:active { transform: scale(0.97); background: #f8fafc; }
+
+        .btn-theme {
+            background: #f8fafc;
+            border: 1px solid #f1f5f9;
+            padding: 18px;
+            border-radius: 16px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            text-align: left;
+            width: 100%;
+            display: block;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-theme:hover { border-color: var(--primary); background: var(--primary-soft); }
+
+        .btn-main {
             background: var(--primary);
             color: white;
-        }
-        .btn-primary:hover {
-            background: var(--primary-hover);
-            box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.4);
-        }
-
-        .choice-btn {
-            background: #ffffff;
-            border: 2px solid #f3f4f6;
-            padding: 14px 20px;
-            text-align: left;
-            font-size: 15px;
-        }
-        .choice-btn:hover { border-color: var(--primary); background: #f9fafb; }
-
-        .correct { background: var(--correct) !important; color: white !important; border-color: var(--correct) !important; }
-        .wrong { background: var(--wrong) !important; color: white !important; border-color: var(--wrong) !important; }
-
-        /* Progress Bar */
-        .progress-container {
+            padding: 18px;
+            border-radius: 16px;
+            font-weight: 700;
+            text-align: center;
+            border: none;
             width: 100%;
-            height: 6px;
-            background: #e5e7eb;
-            border-radius: 3px;
+            margin-top: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+
+        /* Stats & Mastery */
+        .stats-row {
+            display: flex;
+            gap: 12px;
             margin-bottom: 24px;
         }
-        .progress-bar {
-            height: 100%;
-            background: var(--primary);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 0.4s ease;
+
+        .stat-box {
+            flex: 1;
+            background: linear-gradient(135deg, #ffffff, #f8faff);
+            padding: 20px;
+            border-radius: 20px;
+            border: 1px solid #eef2ff;
+            box-shadow: var(--card-shadow);
         }
 
-        /* Feedback Area */
-        #feedback {
-            margin-top: 20px;
+        .stat-val { font-size: 28px; font-weight: 800; color: var(--primary); }
+        .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 500; }
+
+        .mastery-card {
+            background: white;
             padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+            border: 1px solid #f1f5f9;
+            box-shadow: var(--card-shadow);
+        }
+
+        .progress-track {
+            height: 8px;
+            background: #f1f5f9;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 4px;
+            transition: width 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* Quiz UI */
+        .quiz-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; }
+        .back-btn { font-size: 24px; cursor: pointer; color: var(--text-muted); }
+        
+        .question-card {
+            background: white;
+            border-radius: 24px;
+            padding: 4px;
+        }
+
+        .dialogue-text {
+            background: var(--primary-soft);
+            color: var(--primary);
+            padding: 16px;
             border-radius: 16px;
-            background: #f9fafb;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .choice-item {
+            background: #ffffff;
+            border: 2px solid #f1f5f9;
+            padding: 16px 20px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .choice-item.correct { background: var(--correct) !important; color: white; border-color: var(--correct); }
+        .choice-item.wrong { background: var(--wrong) !important; color: white; border-color: var(--wrong); }
+
+        #feedback-area {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 48px);
+            max-width: 432px;
+            background: white;
+            padding: 24px;
+            border-radius: 24px;
+            box-shadow: 0 -10px 40px rgba(0,0,0,0.1);
+            z-index: 100;
             animation: slideUp 0.3s ease-out;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes slideUp { from { transform: translate(-50%, 100%); } to { transform: translate(-50%, 0); } }
 
-        .dialogue-box {
-            font-size: 14px;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin-bottom: 12px;
-            padding-left: 12px;
-            border-left: 3px solid #e5e7eb;
-        }
-
-        #error-message {
-            color: var(--wrong);
-            background: #fee2e2;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-
-        /* Result Screen */
-        .score-circle {
-            width: 120px;
-            height: 120px;
-            margin: 40px auto;
-            border: 8px solid var(--primary);
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: 700;
-            color: var(--primary);
-        }
     </style>
 </head>
 <body>
 
 <div id="app">
-    <div id="error-message" class="hidden"></div>
-    
-    <!-- Header -->
-    <div id="header">
-        <h1>BizPro English</h1>
-        <p class="subtitle">Elevate your professional English</p>
-    </div>
-
-    <!-- 1. Course Selection -->
-    <div id="course-screen">
-        <button class="btn-primary" onclick="selectCourse('beginner')">Beginner</button>
-        <button class="btn-primary" onclick="selectCourse('intermediate')">Intermediate</button>
-        <button class="btn-primary" onclick="selectCourse('advanced')">Advanced</button>
-    </div>
-
-    <!-- 2. Theme Selection -->
-    <div id="theme-screen" class="hidden">
-        <div id="theme-list"></div>
-        <button onclick="backToCourse()" style="margin-top: 20px; color: var(--text-muted); background: transparent;">← Back to Courses</button>
-    </div>
-
-    <!-- 3. Quiz Screen -->
-    <div id="quiz-screen" class="hidden">
-        <div class="progress-container"><div id="progress-bar" class="progress-bar"></div></div>
-        <div id="dialogue" class="dialogue-box"></div>
-        <div id="question-text" style="font-weight: 700; font-size: 18px; margin-bottom: 20px;"></div>
-        <div id="choices"></div>
+    <!-- Home Screen -->
+    <div id="screen-home" class="screen">
+        <div class="brand">BizPro English</div>
+        <p style="color: var(--text-muted); font-size: 15px;">キャリアを加速させる英語学習</p>
         
-        <div id="feedback" class="hidden">
-            <div style="display: flex; align-items: center; margin-bottom: 8px;">
-                <span id="result-emoji" style="font-size: 24px; margin-right: 8px;"></span>
-                <strong id="result-text"></strong>
-            </div>
-            <p id="explanation" style="font-size: 14px; color: var(--text-muted); margin: 0;"></p>
-            <button class="btn-primary" onclick="nextQuestion()" style="margin-top: 16px;">Next Question</button>
+        <h2 class="section-title">コースを選択</h2>
+        <div class="level-card" onclick="selectCourse('beginner')">
+            <div><b style="font-size: 18px;">Beginner</b><br><small style="color:var(--text-muted)">基礎から学ぶビジネス英語</small></div>
+            <span style="font-size: 24px;">🟢</span>
+        </div>
+        <div class="level-card" onclick="selectCourse('intermediate')">
+            <div><b style="font-size: 18px;">Intermediate</b><br><small style="color:var(--text-muted)">実戦的な交渉と会議</small></div>
+            <span style="font-size: 24px;">🟡</span>
+        </div>
+        <div class="level-card" onclick="selectCourse('advanced')">
+            <div><b style="font-size: 18px;">Advanced</b><br><small style="color:var(--text-muted)">高度なプレゼンと言い回し</small></div>
+            <span style="font-size: 24px;">🔴</span>
         </div>
     </div>
 
-    <!-- 4. Result Screen -->
-    <div id="result-screen" class="hidden">
-        <h2 style="text-align:center;">Quiz Completed!</h2>
-        <div class="score-circle" id="final-score-circle">0/10</div>
-        <button class="btn-primary" onclick="location.reload()">Try Again</button>
+    <!-- Theme Screen -->
+    <div id="screen-theme" class="screen hidden">
+        <div class="quiz-header">
+            <span class="back-btn" onclick="showScreen('home')">←</span>
+            <span style="font-weight: 700;" id="theme-level-name">Theme</span>
+            <div style="width:24px;"></div>
+        </div>
+        <div id="theme-list" style="margin-top: 20px;"></div>
     </div>
+
+    <!-- Quiz Screen -->
+    <div id="screen-quiz" class="screen hidden">
+        <div class="quiz-header">
+            <span class="back-btn" onclick="showScreen('home')">✕</span>
+            <div style="flex:1; margin: 0 20px;">
+                <div class="progress-track"><div id="quiz-progress-fill" class="progress-fill" style="width: 0%"></div></div>
+            </div>
+            <span id="quiz-count-text" style="font-size: 12px; font-weight: 700; color: var(--text-muted);">1/10</span>
+        </div>
+
+        <div class="question-card">
+            <div id="dialogue-box" class="dialogue-text"></div>
+            <div id="q-text" style="font-size: 20px; font-weight: 700; margin-bottom: 24px; line-height: 1.4;"></div>
+            <div id="choices-container"></div>
+        </div>
+
+        <div id="feedback-area" class="hidden">
+            <div style="display: flex; gap: 12px; align-items: flex-start; margin-bottom: 16px;">
+                <div id="res-icon" style="font-size: 24px;"></div>
+                <div>
+                    <div id="res-title" style="font-weight: 800; font-size: 18px;"></div>
+                    <div id="res-exp" style="font-size: 14px; color: var(--text-muted); margin-top: 4px; line-height: 1.5;"></div>
+                </div>
+            </div>
+            <button class="btn-main" onclick="nextQuestion()">次へ進む</button>
+        </div>
+    </div>
+
+    <!-- Stats Screen -->
+    <div id="screen-stats" class="screen hidden">
+        <div class="brand">My Progress</div>
+        <div class="stats-row" style="margin-top: 24px;">
+            <div class="stat-box">
+                <div class="stat-val" id="stat-days">0</div>
+                <div class="stat-label">学習日数</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-val" id="stat-count">0</div>
+                <div class="stat-label">完了クイズ</div>
+            </div>
+        </div>
+
+        <h2 class="section-title">コース習熟度</h2>
+        <div id="mastery-container">
+            <div class="mastery-card">
+                <div style="display: flex; justify-content: space-between; font-weight: 700;"><span>Beginner</span><span id="m-beginner-val">0%</span></div>
+                <div class="progress-track"><div id="m-beginner-bar" class="progress-fill" style="width: 0%"></div></div>
+            </div>
+            <div class="mastery-card">
+                <div style="display: flex; justify-content: space-between; font-weight: 700;"><span>Intermediate</span><span id="m-intermediate-val">0%</span></div>
+                <div class="progress-track"><div id="m-intermediate-bar" class="progress-fill" style="width: 0%"></div></div>
+            </div>
+            <div class="mastery-card">
+                <div style="display: flex; justify-content: space-between; font-weight: 700;"><span>Advanced</span><span id="m-advanced-val">0%</span></div>
+                <div class="progress-track"><div id="m-advanced-bar" class="progress-fill" style="width: 0%"></div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-item active" id="nav-home" onclick="showScreen('home')">
+            <span class="nav-icon">🏠</span>
+            <span>ホーム</span>
+        </div>
+        <div class="nav-item" id="nav-stats" onclick="showScreen('stats')">
+            <span class="nav-icon">📊</span>
+            <span>レポート</span>
+        </div>
+    </nav>
 </div>
 
 <script>
@@ -219,124 +366,132 @@
     let currentQuestions = [];
     let currentIndex = 0;
     let score = 0;
+    let currentLevel = '';
 
-    const getPath = (level) => `data/${level}.json`;
+    // Data Load
+    let stats = JSON.parse(localStorage.getItem('bizpro_v2_stats')) || {
+        days: 1, lastLogin: new Date().toDateString(), quizCount: 0,
+        mastery: { beginner: 0, intermediate: 0, advanced: 0 }
+    };
+
+    if (stats.lastLogin !== new Date().toDateString()) {
+        stats.days++;
+        stats.lastLogin = new Date().toDateString();
+        save();
+    }
+
+    function save() { localStorage.setItem('bizpro_v2_stats', JSON.stringify(stats)); }
+
+    function showScreen(name) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(`screen-${name}`).classList.remove('hidden');
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        if(['home', 'theme', 'quiz'].includes(name)) document.getElementById('nav-home').classList.add('active');
+        else document.getElementById(`nav-${name}`).classList.add('active');
+        if(name === 'stats') updateStatsUI();
+        window.scrollTo(0,0);
+    }
+
+    function updateStatsUI() {
+        document.getElementById('stat-days').innerText = stats.days;
+        document.getElementById('stat-count').innerText = stats.quizCount;
+        ['beginner', 'intermediate', 'advanced'].forEach(l => {
+            const v = stats.mastery[l] || 0;
+            document.getElementById(`m-${l}-val`).innerText = v + '%';
+            document.getElementById(`m-${l}-bar`).style.width = v + '%';
+        });
+    }
 
     async function selectCourse(level) {
-        const errDiv = document.getElementById('error-message');
-        errDiv.classList.add('hidden');
-        
+        currentLevel = level;
         try {
-            const response = await fetch(getPath(level));
-            if (!response.ok) throw new Error("JSON file not found.");
-            allData = await response.json();
-            
-            document.getElementById('course-screen').classList.add('hidden');
-            document.getElementById('theme-screen').classList.remove('hidden');
-            generateThemeButtons();
-        } catch (e) {
-            errDiv.innerText = "Error loading data. Make sure JSON files are in the same folder.";
-            errDiv.classList.remove('hidden');
-        }
+            const res = await fetch(`data/${level}.json`);
+            allData = await res.json();
+            document.getElementById('theme-level-name').innerText = level.toUpperCase();
+            generateThemes();
+            showScreen('theme');
+        } catch (e) { alert("Data load error. Check data/ folder."); }
     }
 
-    function generateThemeButtons() {
-        const themeList = document.getElementById('theme-list');
-        themeList.innerHTML = "";
-        const categories = [...new Set(allData.map(q => q.category))].sort();
-        
-        categories.forEach(cat => {
-            const btn = document.createElement('button');
-            btn.innerText = cat;
-            btn.onclick = () => startQuiz(cat);
-            themeList.appendChild(btn);
+    function generateThemes() {
+        const list = document.getElementById('theme-list');
+        list.innerHTML = "";
+        const cats = [...new Set(allData.map(q => q.category))].sort();
+        cats.forEach(c => {
+            const b = document.createElement('div');
+            b.className = "btn-theme";
+            b.innerText = c;
+            b.onclick = () => startQuiz(c);
+            list.appendChild(b);
         });
-
-        const allBtn = document.createElement('button');
-        allBtn.innerText = "🌟 Shuffle All Themes";
-        allBtn.style.background = "linear-gradient(to right, #4f46e5, #764ba2)";
-        allBtn.style.color = "white";
-        allBtn.onclick = () => startQuiz('ALL');
-        themeList.appendChild(allBtn);
+        const all = document.createElement('button');
+        all.className = "btn-main";
+        all.innerText = "すべてのテーマをシャッフル";
+        all.onclick = () => startQuiz('ALL');
+        list.appendChild(all);
     }
 
-    function startQuiz(category) {
-        currentQuestions = category === 'ALL' ? [...allData] : allData.filter(q => q.category === category);
+    function startQuiz(cat) {
+        currentQuestions = cat === 'ALL' ? [...allData] : allData.filter(q => q.category === cat);
         currentQuestions.sort(() => Math.random() - 0.5);
         currentQuestions = currentQuestions.slice(0, 10);
-        currentIndex = 0;
-        score = 0;
-
-        document.getElementById('theme-screen').classList.add('hidden');
-        document.getElementById('header').classList.add('hidden');
-        document.getElementById('quiz-screen').classList.remove('hidden');
+        currentIndex = 0; score = 0;
+        showScreen('quiz');
         showQuestion();
     }
 
     function showQuestion() {
         const q = currentQuestions[currentIndex];
-        const progress = ((currentIndex) / currentQuestions.length) * 100;
-        document.getElementById('progress-bar').style.width = progress + "%";
+        document.getElementById('quiz-progress-fill').style.width = (currentIndex / 10 * 100) + "%";
+        document.getElementById('quiz-count-text').innerText = `${currentIndex + 1}/10`;
+        document.getElementById('dialogue-box').innerText = q.dialogue;
+        document.getElementById('q-text').innerText = q.q;
+        document.getElementById('feedback-area').classList.add('hidden');
         
-        document.getElementById('dialogue').innerText = q.dialogue;
-        document.getElementById('question-text').innerText = q.q;
-        document.getElementById('feedback').classList.add('hidden');
-        
-        const choicesDiv = document.getElementById('choices');
-        choicesDiv.innerHTML = "";
-        
-        q.choices.forEach(choice => {
-            const btn = document.createElement('button');
-            btn.className = "choice-btn";
-            btn.innerText = choice;
-            btn.onclick = () => checkAnswer(choice, btn);
-            choicesDiv.appendChild(btn);
+        const container = document.getElementById('choices-container');
+        container.innerHTML = "";
+        q.choices.forEach(c => {
+            const div = document.createElement('div');
+            div.className = "choice-item";
+            div.innerText = c;
+            div.onclick = () => check(c, div);
+            container.appendChild(div);
         });
     }
 
-    function checkAnswer(selected, btn) {
+    function check(choice, el) {
         const q = currentQuestions[currentIndex];
-        const allBtns = document.querySelectorAll('#choices button');
-        allBtns.forEach(b => { b.disabled = true; b.style.opacity = "0.7"; });
-        btn.style.opacity = "1";
+        const all = document.querySelectorAll('.choice-item');
+        all.forEach(b => b.style.pointerEvents = "none");
 
-        if (selected === q.a) {
-            btn.classList.add('correct');
-            document.getElementById('result-emoji').innerText = "✨";
-            document.getElementById('result-text').innerText = "Correct!";
+        if (choice === q.a) {
+            el.classList.add('correct');
+            document.getElementById('res-icon').innerText = "✨";
+            document.getElementById('res-title').innerText = "Correct!";
             score++;
         } else {
-            btn.classList.add('wrong');
-            document.getElementById('result-emoji').innerText = "💡";
-            document.getElementById('result-text').innerText = "Not quite...";
-            allBtns.forEach(b => {
-                if(b.innerText === q.a) b.classList.add('correct');
-            });
+            el.classList.add('wrong');
+            document.getElementById('res-icon').innerText = "💡";
+            document.getElementById('res-title').innerText = "Incorrect";
+            all.forEach(b => { if(b.innerText === q.a) b.classList.add('correct'); });
         }
-
-        document.getElementById('explanation').innerText = q.exp;
-        document.getElementById('feedback').classList.remove('hidden');
+        document.getElementById('res-exp').innerText = q.exp;
+        document.getElementById('feedback-area').classList.remove('hidden');
     }
 
     function nextQuestion() {
         currentIndex++;
-        if (currentIndex < currentQuestions.length) {
-            showQuestion();
-        } else {
-            showResult();
-        }
+        if (currentIndex < 10) showQuestion();
+        else finish();
     }
 
-    function showResult() {
-        document.getElementById('progress-bar').style.width = "100%";
-        document.getElementById('quiz-screen').classList.add('hidden');
-        document.getElementById('result-screen').classList.remove('hidden');
-        document.getElementById('final-score-circle').innerText = `${score}/${currentQuestions.length}`;
-    }
-
-    function backToCourse() {
-        document.getElementById('theme-screen').classList.add('hidden');
-        document.getElementById('course-screen').classList.remove('hidden');
+    function finish() {
+        stats.quizCount++;
+        const currentM = stats.mastery[currentLevel] || 0;
+        stats.mastery[currentLevel] = Math.min(100, Math.round(currentM + (score * 1))); // 正解数に応じてUP
+        save();
+        alert(`完了！ スコア: ${score}/10`);
+        showScreen('home');
     }
 </script>
 
