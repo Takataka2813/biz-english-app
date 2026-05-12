@@ -1,0 +1,802 @@
+[
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: Hi, I'm Alex. / B: Nice to meet you. I ( ) the Marketing department.",
+    "q": "I ( ) the Marketing department.",
+    "a": "head",
+    "choices": ["head", "make", "stay", "work"],
+    "exp": "「〜の責任者を務めている」という際、managerよりもheadを使うと非常に自然です。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: I've heard a lot about you. / B: ( ) to finally meet you in person.",
+    "q": "( ) to finally meet you in person.",
+    "a": "Pleasure",
+    "choices": ["Pleasure", "Good", "Nice", "Happy"],
+    "exp": "「It is a pleasure to...」の略。メール等で知っていた相手に初めて会う際の定番です。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: What do you do? / B: I'm ( ) for sales in the Asia region.",
+    "q": "I'm ( ) for sales in the Asia region.",
+    "a": "responsible",
+    "choices": ["responsible", "duty", "task", "job"],
+    "exp": "「〜を担当している」の最頻出表現。in charge of とセットで覚えましょう。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: Who do you work for? / B: I am ( ) with ABC Tech.",
+    "q": "I am ( ) with ABC Tech.",
+    "a": "with",
+    "choices": ["with", "at", "by", "for"],
+    "exp": "所属を言う際、atやforも正解ですが、withを使うと「その組織の一員」という対等でプロな響きになります。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: Have you met Sarah? / B: No, we haven't been ( ) yet.",
+    "q": "No, we haven't been ( ) yet.",
+    "a": "introduced",
+    "choices": ["introduced", "known", "met", "talked"],
+    "exp": "「（第三者を介して）紹介される」というビジネスの礼儀正しい表現。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: I'll be working with you on this project. / B: I look forward to ( ) with you.",
+    "q": "I look forward to ( ) with you.",
+    "a": "working",
+    "choices": ["working", "work", "worked", "works"],
+    "exp": "toの後は動名詞(-ing)になる点に注意。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: Sorry, I didn't ( ) your name. / B: Oh, it's Ken.",
+    "q": "Sorry, I didn't ( ) your name.",
+    "a": "catch",
+    "choices": ["catch", "hear", "listen", "take"],
+    "exp": "名前を聞き取れなかった際、catchを使うと「自分の不注意」というニュアンスで角が立ちません。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: Let me ( ) my colleague, Jane. / B: Hello, Jane.",
+    "q": "Let me ( ) my colleague, Jane.",
+    "a": "introduce",
+    "choices": ["introduce", "show", "tell", "present"],
+    "exp": "同僚を紹介する際の最も標準的なフレーズ。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: Is this your first time in Tokyo? / B: Yes. I ( ) to be here.",
+    "q": "Yes. I ( ) to be here.",
+    "a": "delighted",
+    "choices": ["delighted", "good", "nice", "fun"],
+    "exp": "「嬉しい」を意味するプロフェッショナルな単語。happyよりもフォーマル。"
+  },
+  {
+    "category": "01. あいさつと自己紹介",
+    "dialogue": "A: I'm in the R&D team. / B: That ( ) interesting.",
+    "q": "That ( ) interesting.",
+    "a": "sounds",
+    "choices": ["sounds", "looks", "hears", "is"],
+    "exp": "相手の話に相槌を打つ際の定番。「面白そうですね」"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: Welcome to our office. / B: Thank you for ( ) me.",
+    "q": "Thank you for ( ) me.",
+    "a": "having",
+    "choices": ["having", "calling", "meeting", "coming"],
+    "exp": "招待された際や訪問した際、「お招き（時間を割いて）いただき感謝します」の意。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: Did you have any ( ) finding the place? / B: No, the map was perfect.",
+    "q": "Did you have any ( ) finding the place?",
+    "a": "trouble",
+    "choices": ["trouble", "problem", "difficult", "bad"],
+    "exp": "来客への気遣い。「道に迷いませんでしたか？」の定番。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: Can I get you anything to drink? / B: ( ), but I'm fine.",
+    "q": "( ), but I'm fine.",
+    "a": "I'm tempted",
+    "choices": ["I'm tempted", "Yes", "No", "Thanks"],
+    "exp": "「（コーヒーなど）頂きたいところですが、大丈夫です」という少しこなれた断り方。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: How was your ( )? / B: It was smooth, thank you.",
+    "q": "How was your ( )?",
+    "a": "flight",
+    "choices": ["flight", "road", "sky", "coming"],
+    "exp": "海外からの来客にまず聞くべき一言。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: Please have a ( ). The director will be with you shortly.",
+    "q": "Please have a ( ).",
+    "a": "seat",
+    "choices": ["seat", "chair", "sit", "stay"],
+    "exp": "「おかけください」の丁寧な表現。take a seatでも可。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: How are you ( ) your stay in London? / B: It's been great so far.",
+    "q": "How are you ( ) your stay in London?",
+    "a": "enjoying",
+    "choices": ["enjoying", "doing", "staying", "having"],
+    "exp": "滞在を楽しんでいるか聞くスモールトークの王道。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: Is this your first time in this area? / B: Yes, I've ( ) wanted to visit.",
+    "q": "Yes, I've ( ) wanted to visit.",
+    "a": "always",
+    "choices": ["always", "ever", "never", "yet"],
+    "exp": "「ずっと来たかったんです」とポジティブに反応するのがマナー。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: Shall we ( ) down to business? / B: Yes, let's start.",
+    "q": "Shall we ( ) down to business?",
+    "a": "get",
+    "choices": ["get", "go", "sit", "come"],
+    "exp": "雑談を切り上げ、本題（仕事）に入る際の決まり文句。"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: It's a bit chilly today, isn't it? / B: Yes, quite a ( ) from yesterday.",
+    "q": "Yes, quite a ( ) from yesterday.",
+    "a": "change",
+    "choices": ["change", "different", "weather", "same"],
+    "exp": "天気の話題。「昨日とは打って変わって（寒い）ですね」"
+  },
+  {
+    "category": "02. 来客対応とスモールトーク",
+    "dialogue": "A: I'll ( ) you to the conference room. / B: Thank you.",
+    "q": "I'll ( ) you to the conference room.",
+    "a": "show",
+    "choices": ["show", "take", "bring", "lead"],
+    "exp": "「案内する」はshow someone to (場所)を使います。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Hello, this is ABC Corp. / B: Could I ( ) to Mr. Smith, please?",
+    "q": "Could I ( ) to Mr. Smith, please?",
+    "a": "speak",
+    "choices": ["speak", "talk", "tell", "call"],
+    "exp": "電話で「〜さんをお願いします」と言う際の最も一般的な形。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: I'm sorry, he is ( ) at the moment. / B: I see. I'll call back later.",
+    "q": "I'm sorry, he is ( ) at the moment.",
+    "a": "unavailable",
+    "choices": ["unavailable", "free", "busy", "away"],
+    "exp": "席を外している、会議中など「今は対応できない」を包括する丁寧な語。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Would you like to ( ) a message? / B: Yes, please.",
+    "q": "Would you like to ( ) a message?",
+    "a": "leave",
+    "choices": ["leave", "take", "give", "make"],
+    "exp": "「伝言を残されますか？」"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Sorry, you're ( ) up. Could you say that again?",
+    "q": "Sorry, you're ( ) up.",
+    "a": "breaking",
+    "choices": ["breaking", "cuting", "stopping", "falling"],
+    "exp": "電波が悪く、声が途切れている時に使う表現。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Let me just ( ) that back to you. / B: Sure, go ahead.",
+    "q": "Let me just ( ) that back to you.",
+    "a": "read",
+    "choices": ["read", "say", "tell", "speak"],
+    "exp": "メモした内容（電話番号など）を「復唱します」という際、read backを使います。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Who is ( ), please? / B: This is John from XYZ.",
+    "q": "Who is ( ), please?",
+    "a": "calling",
+    "choices": ["calling", "talking", "speaking", "there"],
+    "exp": "「どちら様でしょうか？」の電話での聞き方。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: I'll ( ) you through to the manager. / B: Thank you.",
+    "q": "I'll ( ) you through to the manager.",
+    "a": "put",
+    "choices": ["put", "connect", "send", "call"],
+    "exp": "put (someone) throughで「電話をつなぐ」。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Can you ( ) on for a moment? / B: Sure.",
+    "q": "Can you ( ) on for a moment?",
+    "a": "hold",
+    "choices": ["hold", "wait", "stay", "keep"],
+    "exp": "「少々お待ちください」の電話表現。"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: I'm afraid the line is ( ). / B: I'll try again later.",
+    "q": "I'm afraid the line is ( ).",
+    "a": "busy",
+    "choices": ["busy", "full", "taken", "using"],
+    "exp": "「お話し中です」"
+  },
+  {
+    "category": "03. 電話対応の基本",
+    "dialogue": "A: Thank you for ( ). / B: You're welcome. Have a nice day.",
+    "q": "Thank you for ( ).",
+    "a": "calling",
+    "choices": ["calling", "talk", "speaking", "help"],
+    "exp": "電話を切る際の挨拶。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: Could we ( ) a meeting for next Monday? / B: Let me check my calendar.",
+    "q": "Could we ( ) a meeting for next Monday?",
+    "a": "schedule",
+    "choices": ["schedule", "do", "make", "take"],
+    "exp": "「会議を予定に入れる」の最も標準的な動詞です。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: I'm ( ) I can't make it on Tuesday. / B: No problem. How about Wednesday?",
+    "q": "I'm ( ) I can't make it on Tuesday.",
+    "a": "afraid",
+    "choices": ["afraid", "sorry", "sad", "bad"],
+    "exp": "都合が悪いことを丁寧に伝えるクッション言葉。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: Does 3 PM ( ) you? / B: Yes, that works for me.",
+    "q": "Does 3 PM ( ) you?",
+    "a": "suit",
+    "choices": ["suit", "fit", "go", "match"],
+    "exp": "「その時間はご都合よろしいですか？」"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: Something has ( ) up. Can we postpone? / B: Sure, let's reschedule.",
+    "q": "Something has ( ) up.",
+    "a": "come",
+    "choices": ["come", "gone", "happened", "made"],
+    "exp": "「急用ができた」という際の定番熟語。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: I'd like to ( ) our appointment to 4 PM. / B: That should be fine.",
+    "q": "I'd like to ( ) our appointment to 4 PM.",
+    "a": "move",
+    "choices": ["move", "change", "push", "go"],
+    "exp": "時間をずらす際によく使われる動詞。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: Let's ( ) it for next Thursday. / B: Done. I'll send an invite.",
+    "q": "Let's ( ) it for next Thursday.",
+    "a": "fix",
+    "choices": ["fix", "set", "make", "decide"],
+    "exp": "日時を「確定させる」という意味。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: I'm ( ) all day on Friday. / B: Okay, let's aim for Monday then.",
+    "q": "I'm ( ) all day on Friday.",
+    "a": "tied up",
+    "choices": ["tied up", "busy", "occupied", "stuck"],
+    "exp": "「手が離せない」「予定が詰まっている」のこなれた表現。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: Would you mind ( ) our meeting? / B: Not at all. When to?",
+    "q": "Would you mind ( ) our meeting?",
+    "a": "rescheduling",
+    "choices": ["rescheduling", "moving", "changing", "delaying"],
+    "exp": "mindの後は動名詞(-ing)になります。"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: I'll ( ) the date by email. / B: Looking forward to it.",
+    "q": "I'll ( ) the date by email.",
+    "a": "confirm",
+    "choices": ["confirm", "check", "tell", "say"],
+    "exp": "「確定させる、確認する」"
+  },
+  {
+    "category": "04. スケジュールの調整",
+    "dialogue": "A: Just ( ) my memory, what time was the meeting? / B: It's at 10 AM.",
+    "q": "Just ( ) my memory, what time was the meeting?",
+    "a": "refreshing",
+    "choices": ["refreshing", "checking", "calling", "making"],
+    "exp": "「記憶を呼び起こす（確認する）のですが」という丁寧な聞き方。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: Could you ( ) me a hand with this? / B: Sure, what do you need?",
+    "q": "Could you ( ) me a hand with this?",
+    "a": "lend",
+    "choices": ["lend", "give", "take", "make"],
+    "exp": "「手伝ってくれますか？」の定番表現。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: I'm ( ) my progress on the report. / B: Good to hear.",
+    "q": "I'm ( ) my progress on the report.",
+    "a": "tracking",
+    "choices": ["tracking", "doing", "making", "seeing"],
+    "exp": "「進捗を追っている（管理している）」"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: Let's ( ) base on this later. / B: Sounds good.",
+    "q": "Let's ( ) base on this later.",
+    "a": "touch",
+    "choices": ["touch", "hit", "make", "keep"],
+    "exp": "touch baseで「連絡を取り合う」「状況を確認し合う」。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: I'll ( ) you in on the details. / B: Thanks, I appreciate it.",
+    "q": "I'll ( ) you in on the details.",
+    "a": "fill",
+    "choices": ["fill", "tell", "say", "give"],
+    "exp": "fill someone in で「（不足している情報を）教える」。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: Can you ( ) me in the loop? / B: Of course. I'll copy you on all emails.",
+    "q": "Can you ( ) me in the loop?",
+    "a": "keep",
+    "choices": ["keep", "put", "stay", "hold"],
+    "exp": "keep someone in the loop で「進捗を常に共有する」。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: I'm ( ) a bit behind schedule. / B: Do you need extra help?",
+    "q": "I'm ( ) a bit behind schedule.",
+    "a": "running",
+    "choices": ["running", "going", "making", "doing"],
+    "exp": "予定より遅れている際の状態を表す動詞。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: Let's ( ) it a day. / B: Agree. See you tomorrow.",
+    "q": "Let's ( ) it a day.",
+    "a": "call",
+    "choices": ["call", "make", "end", "finish"],
+    "exp": "「今日はここまでにしよう（切り上げよう）」"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: I'll get ( ) to you by EOD. / B: Great, thanks.",
+    "q": "I'll get ( ) to you by EOD.",
+    "a": "back",
+    "choices": ["back", "return", "answer", "reply"],
+    "exp": "get back to someone で「折り返し連絡する」。"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: Is there anything else I should ( )? / B: No, that's all for now.",
+    "q": "Is there anything else I should ( )?",
+    "a": "address",
+    "choices": ["address", "do", "handle", "take"],
+    "exp": "「対処すべきこと、言及すべきこと」"
+  },
+  {
+    "category": "05. 社内コミュニケーション",
+    "dialogue": "A: I'm ( ) charge of this project. / B: You're doing a great job.",
+    "q": "I'm ( ) charge of this project.",
+    "a": "in",
+    "choices": ["in", "at", "on", "for"],
+    "exp": "in charge of で「〜の担当／責任者」。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: Let's ( ) started, shall we? / B: Yes, everyone is here.",
+    "q": "Let's ( ) started, shall we?",
+    "a": "get",
+    "choices": ["get", "make", "be", "go"],
+    "exp": "会議を始める際の最も一般的な掛け声。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: The ( ) of today's meeting is to discuss the budget. / B: Understood.",
+    "q": "The ( ) of today's meeting is...",
+    "a": "purpose",
+    "choices": ["purpose", "goal", "object", "target"],
+    "exp": "会議の目的を述べる際のフォーマルな語。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: Has everyone received a copy of the ( )? / B: Yes, we have it.",
+    "q": "Has everyone received a copy of the ( )?",
+    "a": "agenda",
+    "choices": ["agenda", "paper", "list", "plan"],
+    "exp": "「議題、協議事項」。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: Let's ( ) to the first item. / B: Right, the marketing plan.",
+    "q": "Let's ( ) to the first item.",
+    "a": "move on",
+    "choices": ["move on", "go on", "step in", "run to"],
+    "exp": "「次の項目に移る」。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: Could you ( ) up a bit? It's hard to hear you. / B: Is this better?",
+    "q": "Could you ( ) up a bit?",
+    "a": "speak",
+    "choices": ["speak", "talk", "voice", "sound"],
+    "exp": "「（声を）大きく話す」。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: I'd like to ( ) in here if I may. / B: Sure, go ahead.",
+    "q": "I'd like to ( ) in here if I may.",
+    "a": "jump",
+    "choices": ["jump", "go", "come", "talk"],
+    "exp": "jump in で発言に割り込む際のこなれた表現。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: What are your ( ) on this? / B: I think it's a good idea.",
+    "q": "What are your ( ) on this?",
+    "a": "thoughts",
+    "choices": ["thoughts", "thinks", "minds", "ideas"],
+    "exp": "意見を求める際、「どう思いますか？」のよりプロな聞き方。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: Let's ( ) that for the next meeting. / B: Good idea, we're low on time.",
+    "q": "Let's ( ) that for the next meeting.",
+    "a": "save",
+    "choices": ["save", "keep", "stay", "hold"],
+    "exp": "後回しにする、取っておく。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: To ( ) up, we've decided to launch in June. / B: Perfect.",
+    "q": "To ( ) up, we've decided...",
+    "a": "sum",
+    "choices": ["sum", "wrap", "finish", "end"],
+    "exp": "sum up で「要約する、まとめる」。"
+  },
+  {
+    "category": "06. 会議のスタートと参加",
+    "dialogue": "A: Any ( ) comments before we finish? / B: None from me.",
+    "q": "Any ( ) comments before we finish?",
+    "a": "closing",
+    "choices": ["closing", "final", "end", "last"],
+    "exp": "「最後に何かありますか？」"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: I ( ) agree with you more. / B: Glad we're on the same page.",
+    "q": "I ( ) agree with you more.",
+    "a": "couldn't",
+    "choices": ["couldn't", "can", "should", "must"],
+    "exp": "「これ以上ないほど賛成（＝大賛成）」という強い同意。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: I see your ( ), but I'm concerned about the cost. / B: I understand.",
+    "q": "I see your ( ), but...",
+    "a": "point",
+    "choices": ["point", "idea", "view", "mean"],
+    "exp": "反対意見を言う前の「おっしゃることは分かりますが」というクッション。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: From my ( ), this is the best option. / B: I see what you mean.",
+    "q": "From my ( ), this is the best option.",
+    "a": "perspective",
+    "choices": ["perspective", "look", "view", "thought"],
+    "exp": "「私の視点／考えでは」。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: I'm not ( ) sure about that. / B: Why not?",
+    "q": "I'm not ( ) sure about that.",
+    "a": "so",
+    "choices": ["so", "very", "quite", "too"],
+    "exp": "断定を避けて「あまり確信が持てない（＝反対）」と伝える技術。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: That's a ( ) point. I hadn't thought of that. / B: Thanks.",
+    "q": "That's a ( ) point.",
+    "a": "valid",
+    "choices": ["valid", "good", "true", "right"],
+    "exp": "「もっともな／妥当な指摘ですね」。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: I beg to ( ). I think the risk is too high. / B: Let's discuss further.",
+    "q": "I beg to ( ).",
+    "a": "differ",
+    "choices": ["differ", "disagree", "different", "dissent"],
+    "exp": "非常に丁寧かつ知的な反対の表明。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: We're ( ) the same page. / B: Excellent. Let's proceed.",
+    "q": "We're ( ) the same page.",
+    "a": "on",
+    "choices": ["on", "in", "at", "with"],
+    "exp": "「意見が一致している」の定番イディオム。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: Could you ( ) on that? / B: Sure, let me explain.",
+    "q": "Could you ( ) on that?",
+    "a": "elaborate",
+    "choices": ["elaborate", "explain", "tell", "speak"],
+    "exp": "「詳しく説明する」のプロフェッショナルな単語。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: I'm ( ) in favor of the proposal. / B: So am I.",
+    "q": "I'm ( ) in favor of the proposal.",
+    "a": "strongly",
+    "choices": ["strongly", "very", "big", "deeply"],
+    "exp": "賛成であることを強調する副詞。"
+  },
+  {
+    "category": "07. 意見を述べる・賛成反対",
+    "dialogue": "A: Let's ( ) to disagree for now. / B: Agreed. Let's move on.",
+    "q": "Let's ( ) to disagree for now.",
+    "a": "agree",
+    "choices": ["agree", "make", "decide", "go"],
+    "exp": "「意見がまとまらないことを認める（＝折り合いをつける）」。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: First of ( ), I'd like to thank you for coming. / B: Our pleasure.",
+    "q": "First of ( ), I'd like to thank you...",
+    "a": "all",
+    "choices": ["all", "one", "them", "first"],
+    "exp": "プレゼン開始時の決まり文句。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: I've ( ) my presentation into three parts. / B: Okay.",
+    "q": "I've ( ) my presentation into three parts.",
+    "a": "divided",
+    "choices": ["divided", "cut", "made", "separated"],
+    "exp": "構成を説明する際の表現。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: This ( ) leads me to my next point. / B: I see the connection.",
+    "q": "This ( ) leads me to my next point.",
+    "a": "point",
+    "choices": ["point", "talk", "thing", "fact"],
+    "exp": "トピックを切り替える際の繋ぎ言葉。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: Let's ( ) a look at this chart. / B: The numbers are impressive.",
+    "q": "Let's ( ) a look at this chart.",
+    "a": "take",
+    "choices": ["take", "have", "make", "see"],
+    "exp": "図表を示す際の指示。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: To ( ) what I said earlier... / B: Yes, that's clear now.",
+    "q": "To ( ) what I said earlier...",
+    "a": "reiterate",
+    "choices": ["reiterate", "repeat", "say", "tell"],
+    "exp": "「（強調のために）繰り返す」のフォーマルな語。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: Moving ( ) to the next slide... / B: Wait, I have a question.",
+    "q": "Moving ( ) to the next slide...",
+    "a": "on",
+    "choices": ["on", "to", "forward", "along"],
+    "exp": "次のスライドへ進む合図。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: This is a crucial ( ) of our strategy. / B: I agree, it's vital.",
+    "q": "This is a crucial ( ) of our strategy.",
+    "a": "aspect",
+    "choices": ["aspect", "part", "thing", "way"],
+    "exp": "「側面、局面」。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: If you have any questions, feel ( ) to ask. / B: Thank you.",
+    "q": "If you have any questions, feel ( ) to ask.",
+    "a": "free",
+    "choices": ["free", "good", "easy", "welcome"],
+    "exp": "質問を促す際の定番フレーズ。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: Let's ( ) up what we've covered. / B: That would be helpful.",
+    "q": "Let's ( ) up what we've covered.",
+    "a": "wrap",
+    "choices": ["wrap", "finish", "close", "end"],
+    "exp": "「締めくくる、まとめる」。"
+  },
+  {
+    "category": "08. プレゼンの基本構成",
+    "dialogue": "A: Thank you for your ( ). / B: It was very informative.",
+    "q": "Thank you for your ( ).",
+    "a": "attention",
+    "choices": ["attention", "listening", "coming", "time"],
+    "exp": "プレゼン終了時の感謝。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: I'm writing to ( ) for the delay. / B: Thank you for letting us know.",
+    "q": "I'm writing to ( ) for the delay.",
+    "a": "apologize",
+    "choices": ["apologize", "sorry", "say", "tell"],
+    "exp": "遅延に対する正式な謝罪。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: Something ( ) wrong with the server. / B: How long will it take to fix?",
+    "q": "Something ( ) wrong with the server.",
+    "a": "went",
+    "choices": ["went", "was", "did", "made"],
+    "exp": "「不具合が起きた」の一般的表現。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: We are ( ) our best to resolve the issue. / B: Please keep us updated.",
+    "q": "We are ( ) our best to resolve the issue.",
+    "a": "doing",
+    "choices": ["doing", "making", "taking", "working"],
+    "exp": "最善を尽くしていることを伝える。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: Please ( ) our sincerest apologies. / B: Apology accepted.",
+    "q": "Please ( ) our sincerest apologies.",
+    "a": "accept",
+    "choices": ["accept", "take", "have", "give"],
+    "exp": "極めてフォーマルな謝罪文。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: It was an ( ) on our part. / B: I see, please be careful next time.",
+    "q": "It was an ( ) on our part.",
+    "a": "oversight",
+    "choices": ["oversight", "error", "mistake", "bad"],
+    "exp": "「見落とし、手落ち」という少し柔らかい表現。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: I'll ( ) into it immediately. / B: Please do. It's urgent.",
+    "q": "I'll ( ) into it immediately.",
+    "a": "look",
+    "choices": ["look", "see", "check", "go"],
+    "exp": "「調査する、調べる」。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: We'll make ( ) it doesn't happen again. / B: We hope so.",
+    "q": "We'll make ( ) it doesn't happen again.",
+    "a": "sure",
+    "choices": ["sure", "certain", "clear", "good"],
+    "exp": "再発防止を約束する言葉。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: How can we make ( ) for this? / B: A discount on the next order would be nice.",
+    "q": "How can we make ( ) for this?",
+    "a": "up",
+    "choices": ["up", "out", "off", "it"],
+    "exp": "make up for で「埋め合わせをする」。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: I'm ( ) sorry for the inconvenience. / B: I appreciate your honesty.",
+    "q": "I'm ( ) sorry for the inconvenience.",
+    "a": "deeply",
+    "choices": ["deeply", "very", "too", "so"],
+    "exp": "深い謝罪を表す副詞。"
+  },
+  {
+    "category": "09. トラブル報告と謝罪",
+    "dialogue": "A: Rest ( ) that we are on it. / B: Good to hear.",
+    "q": "Rest ( ) that we are on it.",
+    "a": "assured",
+    "choices": ["assured", "sure", "easy", "safe"],
+    "exp": "「ご安心ください（間違いなく進めています）」という強い確約。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: Thank you for your ( ) the other day. / B: It was no trouble at all.",
+    "q": "Thank you for your ( ) the other day.",
+    "a": "hospitality",
+    "choices": ["hospitality", "help", "coming", "kind"],
+    "exp": "「おもてなし（接待など）」に対する感謝。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: I'm ( ) to you for your help. / B: Don't mention it.",
+    "q": "I'm ( ) to you for your help.",
+    "a": "indebted",
+    "choices": ["indebted", "thankful", "happy", "good"],
+    "exp": "「恩義を感じています（大変助かりました）」のフォーマルな語。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: It was a ( ) meeting you. / B: Same here.",
+    "q": "It was a ( ) meeting you.",
+    "a": "pleasure",
+    "choices": ["pleasure", "good", "nice", "happy"],
+    "exp": "別れ際の定番。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: I'll ( ) you the minutes of the meeting. / B: Thanks, that would be great.",
+    "q": "I'll ( ) you the minutes of the meeting.",
+    "a": "forward",
+    "choices": ["forward", "send", "give", "tell"],
+    "exp": "「（メールなどを）転送する／送る」。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: Let's ( ) in touch. / B: Absolutely. Speak soon.",
+    "q": "Let's ( ) in touch.",
+    "a": "keep",
+    "choices": ["keep", "stay", "be", "make"],
+    "exp": "「連絡を取り合いましょう」。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: I ( ) your quick response. / B: You're welcome.",
+    "q": "I ( ) your quick response.",
+    "a": "appreciate",
+    "choices": ["appreciate", "thank", "like", "value"],
+    "exp": "感謝の動詞としてビジネスで最も好まれます。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: I just wanted to ( ) base after our call. / B: Thanks for following up.",
+    "q": "I just wanted to ( ) base...",
+    "a": "touch",
+    "choices": ["touch", "hit", "make", "keep"],
+    "exp": "電話後の状況確認（フォローアップ）の表現。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: Please ( ) my regards to your team. / B: I will, thank you.",
+    "q": "Please ( ) my regards to your team.",
+    "a": "give",
+    "choices": ["give", "say", "tell", "send"],
+    "exp": "「よろしくお伝えください」。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: We look forward to a ( ) relationship. / B: As do we.",
+    "q": "We look forward to a ( ) relationship.",
+    "a": "fruitful",
+    "choices": ["fruitful", "good", "long", "happy"],
+    "exp": "「実りある（良好な）関係」というプロフェッショナルな言い回し。"
+  },
+  {
+    "category": "10. 感謝とフォローアップ",
+    "dialogue": "A: ( ) regards, Taro. / B: Best, Alex.",
+    "q": "( ) regards, Taro.",
+    "a": "Kind",
+    "choices": ["Kind", "Best", "Warm", "Good"],
+    "exp": "メールの結び言葉の定番。"
+  }
+]
