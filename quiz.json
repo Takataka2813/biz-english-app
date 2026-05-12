@@ -1,0 +1,16 @@
+[
+  {
+    "dialogue": "A: The budget is tight.\nB: I have some (  ) about this, but let's try.",
+    "q": "(      ) about that request, but let's see if we can offer something else.",
+    "a": "Reservations",
+    "choices": ["Reservations", "Complaints", "Doubts", "Bad feelings"],
+    "exp": "文頭のReservationsは『懸念』を意味する洗練された表現です。"
+  },
+  {
+    "dialogue": "A: Is the report ready?\nB: I'm just (  ) up with the team.",
+    "q": "I'm just (      ) up on that with the team right now.",
+    "a": "following",
+    "choices": ["following", "checking", "looking", "asking"],
+    "exp": "Following upは進捗確認の黄金フレーズです。"
+  }
+]
