@@ -2,223 +2,137 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>BizPRO - Master Edition</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizPro - ビジネス英語クイズ</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; background-color: #f1f5f9; -webkit-tap-highlight-color: transparent; }
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 20px; }
+        #app { background: white; width: 100%; max-width: 500px; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         .hidden { display: none; }
-        .page-transition { animation: fadeIn 0.3s ease-out forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        .btn-action { transition: transform 0.1s ease, background-color 0.2s; }
-        .btn-action:active { transform: scale(0.97); }
-        /* 満点バッジのスタイル */
-        .perfect-badge { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); color: white; padding: 2px 8px; border-radius: 999px; font-size: 9px; font-weight: 800; text-transform: uppercase; }
+        h1 { font-size: 1.2rem; color: #1a73e8; text-align: center; }
+        .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: 0.2s; }
+        .level-btn { background: #e8f0fe; color: #1a73e8; font-weight: bold; border: 2px solid #1a73e8; }
+        .level-btn:hover { background: #d2e3fc; }
+        .choice-btn { background: #fff; border: 1px solid #ddd; text-align: left; }
+        .choice-btn:hover { background: #f8f9fa; border-color: #bbb; }
+        .correct { background: #d4edda !important; border-color: #c3e6cb !important; }
+        .wrong { background: #f8d7da !important; border-color: #f5c6cb !important; }
+        #explanation { background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 0.9rem; line-height: 1.5; }
+        .progress { font-size: 0.8rem; color: #666; margin-bottom: 10px; }
     </style>
 </head>
-<body class="min-h-screen flex justify-center items-start sm:items-center">
+<body>
 
-    <div id="app" class="relative max-w-md w-full h-[100dvh] sm:h-[700px] bg-white sm:rounded-[2.5rem] shadow-xl overflow-hidden flex flex-col">
-        
-        <header class="pt-10 pb-4 px-6 flex justify-between items-center bg-slate-900 text-white">
-            <div>
-                <h1 class="text-xl font-bold tracking-tight">BizPRO<span class="text-indigo-400">.</span></h1>
-                <p id="header-subtitle" class="text-[10px] text-slate-400 uppercase tracking-widest">Training Mode</p>
-            </div>
-            <div id="q-counter" class="text-[11px] font-mono bg-slate-800 px-3 py-1 rounded-full text-indigo-300 border border-slate-700"></div>
-        </header>
+<div id="app">
+    <h1>BizPro English</h1>
 
-        <div class="w-full h-1 bg-slate-800">
-            <div id="top-progress" class="h-full bg-indigo-500 transition-all duration-500" style="width: 0%"></div>
-        </div>
-
-        <main class="flex-1 flex flex-col p-6 overflow-y-auto">
-            
-            <!-- 1. MENU SCREEN -->
-            <div id="menu-screen" class="page-transition space-y-3">
-                <div class="flex justify-between items-center mb-4">
-                    <p class="text-[11px] font-bold text-slate-400 uppercase">Choose a Session</p>
-                    <button onclick="resetData()" class="text-[9px] text-slate-300 underline uppercase tracking-tighter">Reset Progress</button>
-                </div>
-                <div id="category-list" class="grid gap-3"></div>
-            </div>
-
-            <!-- 2. QUIZ SCREEN -->
-            <div id="quiz-screen" class="hidden page-transition flex-1 flex flex-col">
-                <div id="dialogue-box" class="mb-6 p-4 bg-slate-50 rounded-2xl border-l-4 border-indigo-400 text-[14px] text-slate-600 leading-relaxed italic">
-                    <p id="dialogue-text"></p>
-                </div>
-                <p id="question-text" class="text-lg font-bold text-slate-800 mb-6 px-1"></p>
-                <div id="choice-area" class="space-y-2 mt-auto"></div>
-            </div>
-
-            <!-- 3. FEEDBACK SCREEN -->
-            <div id="feedback-screen" class="hidden page-transition flex-1 flex flex-col">
-                <div id="result-card" class="p-6 rounded-3xl flex-1 border-2 mb-4">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 id="result-title" class="text-2xl font-black italic"></h2>
-                        <button onclick="speakAnswer()" class="btn-action bg-white p-3 rounded-full shadow-sm border border-slate-100 text-lg">🔊</button>
-                    </div>
-                    <div class="mb-4 bg-white/50 p-4 rounded-xl">
-                        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Answer</p>
-                        <p id="full-sentence" class="text-slate-900 font-bold text-md"></p>
-                    </div>
-                    <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Coach Notes</p>
-                    <p id="explanation-text" class="text-[13px] text-slate-600 leading-relaxed"></p>
-                </div>
-                <button onclick="nextQuestion()" class="btn-action w-full bg-slate-900 text-white py-5 rounded-2xl font-bold shadow-lg">NEXT QUESTION</button>
-            </div>
-
-            <!-- 4. SUMMARY SCREEN -->
-            <div id="summary-screen" class="hidden page-transition text-center py-10 my-auto">
-                <div id="summary-emoji" class="text-5xl mb-4">🏁</div>
-                <h2 id="rank-title" class="text-3xl font-bold text-slate-900 mb-2"></h2>
-                <p id="summary-text" class="text-slate-500 mb-8"></p>
-                <button onclick="location.reload()" class="btn-action w-full bg-indigo-600 text-white py-5 rounded-2xl font-bold">RETURN TO MENU</button>
-            </div>
-
-        </main>
+    <!-- 1. レベル選択画面 -->
+    <div id="level-select">
+        <p style="text-align:center;">学習するレベルを選択してください</p>
+        <button class="btn level-btn" onclick="startQuiz('beginner.json')">初級 (100問)</button>
+        <button class="btn level-btn" style="opacity:0.5" disabled>中級 (Coming Soon)</button>
+        <button class="btn level-btn" style="opacity:0.5" disabled>上級 (Coming Soon)</button>
     </div>
 
-    <script>
-        let allQuestions = [];
-        let activePool = [];
-        let currentIdx = 0;
-        let score = 0;
-        let currentCategory = "";
+    <!-- 2. クイズ画面 -->
+    <div id="quiz-container" class="hidden">
+        <div class="progress">Question: <span id="q-number">1</span> / 100</div>
+        <div id="category" style="font-weight:bold; color:#555; margin-bottom:5px;"></div>
+        <div id="dialogue" style="margin-bottom:15px; font-style:italic; color:#333;"></div>
+        <div id="question-text" style="font-size:1.1rem; margin-bottom:20px; font-weight:bold;"></div>
+        
+        <div id="choices"></div>
 
-        // 進捗管理用：localStorageから取得
-        let progress = JSON.parse(localStorage.getItem('bizpro_progress')) || {};
+        <div id="explanation" class="hidden">
+            <strong>【解説】</strong><br>
+            <span id="exp-text"></span>
+            <button class="btn" style="background:#1a73e8; color:white; margin-top:15px;" onclick="nextQuestion()">次の問題へ</button>
+        </div>
+    </div>
 
-        function speakAnswer() {
-            const data = activePool[currentIdx];
-            const uttr = new SpeechSynthesisUtterance(data.q.replace("(      )", data.a));
-            uttr.lang = 'en-US';
-            uttr.rate = 0.9;
-            speechSynthesis.speak(uttr);
-        }
+    <!-- 3. 結果画面 -->
+    <div id="result-screen" class="hidden" style="text-align:center;">
+        <h2>お疲れ様でした！</h2>
+        <p style="font-size:1.5rem;">スコア: <span id="final-score"></span> / 100</p>
+        <button class="btn level-btn" onclick="location.reload()">タイトルに戻る</button>
+    </div>
+</div>
 
-        async function loadData() {
-            try {
-                const response = await fetch('quiz.json');
-                allQuestions = await response.json();
-                renderMenu();
-            } catch (e) { console.error("Load failed."); }
-        }
+<script>
+    let allData = [];
+    let currentIndex = 0;
+    let score = 0;
 
-        function renderMenu() {
-            const categories = [...new Set(allQuestions.map(q => q.category))];
-            const list = document.getElementById('category-list');
-            list.innerHTML = '';
-            categories.forEach(cat => {
-                const count = allQuestions.filter(q => q.category === cat).length;
-                // 満点チェック
-                const isPerfect = progress[cat] === true;
-                
-                const btn = document.createElement('button');
-                btn.className = `btn-action w-full flex justify-between items-center p-5 bg-white border ${isPerfect ? 'border-amber-200 bg-amber-50/30' : 'border-slate-200'} rounded-2xl text-left shadow-sm hover:border-indigo-300`;
-                btn.innerHTML = `
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="block font-bold text-slate-800 text-sm">${cat}</span>
-                            ${isPerfect ? '<span class="perfect-badge text-white">Done ✨</span>' : ''}
-                        </div>
-                        <span class="text-[10px] text-slate-400 font-medium uppercase">${count} Questions</span>
-                    </div>
-                    <span class="text-slate-300 text-xs">❯</span>`;
-                btn.onclick = () => startQuiz(cat);
-                list.appendChild(btn);
-            });
-        }
+    // クイズデータの読み込み開始
+    async function startQuiz(fileName) {
+        try {
+            // dataフォルダ内のファイルを参照
+            const response = await fetch(`data/${fileName}`);
+            allData = await response.json();
+            
+            // データをランダムにシャッフル（必要なければコメントアウト）
+            allData.sort(() => Math.random() - 0.5);
 
-        function startQuiz(category) {
-            currentCategory = category;
-            activePool = allQuestions.filter(q => q.category === category);
-            currentIdx = 0; score = 0;
-            document.getElementById('menu-screen').classList.add('hidden');
-            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('level-select').classList.add('hidden');
+            document.getElementById('quiz-container').classList.remove('hidden');
             showQuestion();
+        } catch (error) {
+            alert("データの読み込みに失敗しました。ファイルが data/ フォルダにあるか確認してください。");
+            console.error(error);
+        }
+    }
+
+    function showQuestion() {
+        const data = allData[currentIndex];
+        document.getElementById('q-number').innerText = currentIndex + 1;
+        document.getElementById('category').innerText = data.category;
+        document.getElementById('dialogue').innerText = data.dialogue;
+        document.getElementById('question-text').innerText = data.q;
+        document.getElementById('explanation').classList.add('hidden');
+        
+        const choicesDiv = document.getElementById('choices');
+        choicesDiv.innerHTML = '';
+
+        data.choices.forEach(choice => {
+            const btn = document.createElement('button');
+            btn.className = 'btn choice-btn';
+            btn.innerText = choice;
+            btn.onclick = () => checkAnswer(btn, choice, data.a);
+            choicesDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(btn, selected, correct) {
+        const buttons = document.querySelectorAll('.choice-btn');
+        buttons.forEach(b => b.disabled = true); // 連続クリック防止
+
+        if (selected === correct) {
+            btn.classList.add('correct');
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            // 正解のボタンもハイライト
+            buttons.forEach(b => { if(b.innerText === correct) b.classList.add('correct'); });
         }
 
-        function showQuestion() {
-            const data = activePool[currentIdx];
-            document.getElementById('q-counter').innerText = `${currentIdx + 1}/${activePool.length}`;
-            document.getElementById('dialogue-text').innerText = data.dialogue;
-            document.getElementById('question-text').innerText = data.q;
-            document.getElementById('top-progress').style.width = `${((currentIdx) / activePool.length) * 100}%`;
-            
-            const area = document.getElementById('choice-area');
-            area.innerHTML = '';
-            data.choices.forEach(c => {
-                const b = document.createElement('button');
-                b.className = "btn-action w-full text-left p-4 bg-white border border-slate-200 rounded-xl font-semibold text-slate-700 shadow-sm";
-                b.innerText = c;
-                b.onclick = () => checkAnswer(c);
-                area.appendChild(b);
-            });
+        document.getElementById('exp-text').innerText = allData[currentIndex].exp;
+        document.getElementById('explanation').classList.remove('hidden');
+    }
+
+    function nextQuestion() {
+        currentIndex++;
+        if (currentIndex < allData.length) {
+            showQuestion();
+        } else {
+            showResult();
         }
+    }
 
-        function checkAnswer(val) {
-            const data = activePool[currentIdx];
-            const isCorrect = val.trim().toLowerCase() === data.a.toLowerCase();
-            if (isCorrect) {
-                score++;
-                confetti({ particleCount: 80, spread: 50, origin: { y: 0.8 } });
-            }
-            if(navigator.vibrate) navigator.vibrate(isCorrect ? [20, 10, 20] : 60);
+    function showResult() {
+        document.getElementById('quiz-container').classList.add('hidden');
+        document.getElementById('result-screen').classList.remove('hidden');
+        document.getElementById('final-score').innerText = score;
+    }
+</script>
 
-            document.getElementById('quiz-screen').classList.add('hidden');
-            document.getElementById('feedback-screen').classList.remove('hidden');
-            
-            const card = document.getElementById('result-card');
-            document.getElementById('result-title').innerText = isCorrect ? "Excellent!" : "Not Quite";
-            document.getElementById('result-title').className = `text-2xl font-black italic ${isCorrect ? 'text-emerald-500' : 'text-rose-500'}`;
-            card.style.borderColor = isCorrect ? "#10b981" : "#f43f5e";
-            card.style.backgroundColor = isCorrect ? "#f0fdf4" : "#fef2f2";
-            
-            document.getElementById('full-sentence').innerText = data.q.replace("(      )", data.a);
-            document.getElementById('explanation-text').innerText = data.exp;
-            speakAnswer();
-        }
-
-        function nextQuestion() {
-            currentIdx++;
-            if (currentIdx >= activePool.length) showSummary();
-            else {
-                document.getElementById('feedback-screen').classList.add('hidden');
-                document.getElementById('quiz-screen').classList.remove('hidden');
-                showQuestion();
-            }
-        }
-
-        function showSummary() {
-            document.getElementById('feedback-screen').classList.add('hidden');
-            document.getElementById('summary-screen').classList.remove('hidden');
-            document.getElementById('top-progress').style.width = "100%";
-            
-            const isPerfect = score === activePool.length;
-            
-            // 満点なら進捗を保存
-            if(isPerfect) {
-                progress[currentCategory] = true;
-                localStorage.setItem('bizpro_progress', JSON.stringify(progress));
-            }
-
-            document.getElementById('summary-emoji').innerText = isPerfect ? "🥇" : "🏁";
-            document.getElementById('rank-title').innerText = isPerfect ? "PERFECT!" : "COMPLETED";
-            document.getElementById('summary-text').innerText = `You got ${score} / ${activePool.length} correct.`;
-        }
-
-        function resetData() {
-            if(confirm("学習記録をリセットしますか？")) {
-                localStorage.removeItem('bizpro_progress');
-                location.reload();
-            }
-        }
-
-        loadData();
-    </script>
 </body>
 </html>
