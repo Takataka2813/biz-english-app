@@ -3,178 +3,302 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizEnglish Pro v2</title>
+    <title>BizEnglish Pro - Full Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden { display: none; }
-        .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; }
+        .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; font-weight: 800; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .animate-slide { animation: slideIn 0.3s ease-out forwards; }
     </style>
 </head>
-<body class="bg-slate-100 min-h-screen p-4 flex justify-center items-start">
+<body class="bg-slate-100 min-h-screen flex justify-center items-start p-4 font-sans text-slate-900">
 
-    <div id="app" class="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden mt-4">
-        <!-- ヘッダー -->
-        <div class="bg-indigo-600 p-6 text-white text-center">
-            <h1 class="text-xl font-bold tracking-tight">BizEnglish Pro <span class="text-xs bg-white/20 px-2 py-0.5 rounded ml-2">v2.0</span></h1>
+    <div id="app" class="max-w-md w-full bg-white rounded-[2.5rem] shadow-2xl overflow-hidden mt-2 flex flex-col min-h-[600px] border border-slate-200">
+        
+        <!-- HEADER: Score & Progress -->
+        <div class="bg-slate-900 p-6 text-white">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h1 class="text-xl font-black italic tracking-tighter">BIZ<span class="text-indigo-400">PRO</span></h1>
+                    <p id="mode-indicator" class="text-[9px] uppercase tracking-[0.2em] text-slate-500">Training Mode</p>
+                </div>
+                <div class="text-right">
+                    <p class="text-[10px] text-slate-500 uppercase">Correct Rate</p>
+                    <p id="score-display" class="text-lg font-mono text-indigo-400">0%</p>
+                </div>
+            </div>
+            <div class="w-full bg-slate-800 h-1.5 rounded-full">
+                <div id="progress-bar" class="bg-indigo-500 h-1.5 rounded-full transition-all duration-700" style="width: 0%"></div>
+            </div>
         </div>
 
-        <div class="p-6">
-            <!-- プログレスバー & 復習チェック -->
-            <div class="flex justify-between items-center mb-6">
-                <div class="w-3/4 bg-slate-100 h-2 rounded-full overflow-hidden">
-                    <div id="progress" class="bg-indigo-500 h-2 transition-all duration-500" style="width: 0%"></div>
-                </div>
-                <button onclick="toggleReviewMark()" id="review-btn" class="flex items-center space-x-1 text-slate-400 hover:text-orange-500 transition">
-                    <span class="text-lg">★</span>
-                    <span class="text-xs font-bold">復習</span>
-                </button>
-            </div>
-
-            <!-- クイズコンテンツ -->
-            <div id="quiz-area">
-                <!-- 会話の前座 (新機能) -->
-                <div class="bg-slate-50 border-l-4 border-indigo-300 p-4 mb-6 rounded-r-lg">
-                    <p class="text-xs text-indigo-500 font-bold mb-1 uppercase tracking-widest">Conversation Context</p>
-                    <p id="dialogue" class="text-sm text-slate-700 italic leading-relaxed"></p>
-                </div>
-
-                <p id="context-desc" class="text-xs font-bold text-slate-400 mb-2"></p>
-                <p id="question-text" class="text-lg font-semibold mb-8 text-slate-800 leading-snug"></p>
-
-                <!-- 4択モード -->
-                <div id="choice-mode" class="space-y-3"></div>
-
-                <!-- タイピングモード -->
-                <div id="typing-mode" class="hidden">
-                    <div class="relative">
-                        <input type="text" id="type-input" class="w-full border-2 border-slate-200 rounded-2xl p-4 focus:border-indigo-500 outline-none transition text-lg pr-12">
-                        <span id="hint-char" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 font-mono font-bold text-xl"></span>
+        <!-- MAIN CONTENT -->
+        <div class="p-6 flex-1 flex flex-col">
+            
+            <div id="quiz-screen" class="animate-slide">
+                <!-- Dialogue Context -->
+                <div class="flex justify-between items-start mb-4">
+                    <div class="bg-indigo-50 px-3 py-1 rounded-full border border-indigo-100">
+                        <span id="current-pos" class="text-[10px] font-bold text-indigo-600">01 / 10</span>
                     </div>
-                    <button onclick="checkAnswer(document.getElementById('type-input').value)" class="mt-4 w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 active:scale-95 transition">回答を確定する</button>
+                    <button onclick="toggleReviewMark()" id="review-star" class="transition-transform active:scale-150">
+                        <svg id="star-svg" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-slate-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.382-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div id="dialogue-box" class="mb-6 p-4 bg-slate-50 rounded-2xl border-l-4 border-indigo-400">
+                    <p id="dialogue-text" class="text-sm text-slate-600 leading-relaxed italic"></p>
+                </div>
+
+                <p id="question-text" class="text-lg font-bold text-slate-800 mb-8 leading-snug"></p>
+
+                <!-- Choice Mode -->
+                <div id="choice-area" class="space-y-3"></div>
+
+                <!-- Typing Mode -->
+                <div id="typing-area" class="hidden">
+                    <div class="relative">
+                        <input type="text" id="type-input" placeholder="Type here..." class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl p-5 outline-none focus:border-indigo-500 transition text-lg font-bold">
+                        <span id="hint-letter" class="absolute right-5 top-1/2 -translate-y-1/2 text-slate-300 font-mono text-xl"></span>
+                    </div>
+                    <button onclick="checkAnswer(document.getElementById('type-input').value)" class="w-full mt-4 bg-indigo-600 text-white py-5 rounded-2xl font-black shadow-lg shadow-indigo-100 active:scale-95 transition">SUBMIT</button>
                 </div>
             </div>
 
-            <!-- フィードバック (正解・不正解表示) -->
-            <div id="feedback" class="hidden mt-6 space-y-4">
-                <div id="fb-card" class="p-4 rounded-2xl">
-                    <p id="fb-title" class="font-black text-xl mb-1"></p>
-                    <p id="explanation" class="text-sm text-slate-600 leading-relaxed"></p>
+            <!-- FEEDBACK SCREEN -->
+            <div id="feedback-screen" class="hidden animate-slide">
+                <div id="result-card" class="p-6 rounded-[2rem] mb-6 border-2">
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 id="result-title" class="text-2xl font-black italic">CORRECT</h2>
+                        <button onclick="speakFullSentence()" class="bg-white p-2 rounded-full shadow-sm hover:scale-110 transition">🔊</button>
+                    </div>
+                    
+                    <div class="bg-white/60 p-4 rounded-xl mb-4">
+                        <p class="text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Full Sentence</p>
+                        <p id="full-sentence" class="text-slate-800 font-bold leading-relaxed"></p>
+                    </div>
+
+                    <p class="text-[10px] font-bold text-slate-400 mb-1 uppercase tracking-widest">Japanese Guide</p>
+                    <p id="explanation-text" class="text-sm text-slate-700 leading-relaxed"></p>
                 </div>
-                <button onclick="nextStep()" class="w-full bg-slate-800 text-white py-4 rounded-2xl font-bold hover:bg-black transition">Next Level →</button>
+                <button onclick="nextQuestion()" class="w-full bg-slate-900 text-white py-5 rounded-2xl font-black hover:bg-black transition shadow-xl">CONTINUE →</button>
             </div>
+
+            <!-- RESULT SUMMARY SCREEN -->
+            <div id="summary-screen" class="hidden text-center py-10 animate-slide">
+                <h2 class="text-4xl font-black text-slate-900 mb-2">FINISH!</h2>
+                <div id="final-rank" class="text-6xl mb-6">🏆</div>
+                <p id="summary-text" class="text-lg font-medium text-slate-600 mb-8"></p>
+                <button onclick="resetApp()" class="w-full bg-indigo-600 text-white py-5 rounded-2xl font-black shadow-lg">RESTART TRAINING</button>
+            </div>
+
         </div>
 
-        <!-- 下部メニュー -->
-        <div class="flex border-t border-slate-100 h-16 bg-slate-50/50">
-            <button onclick="setMode('choice')" id="tab-choice" class="flex-1 text-xs font-bold tab-active">4択</button>
-            <button onclick="setMode('type')" id="tab-type" class="flex-1 text-xs font-bold text-slate-400">タイピング</button>
+        <!-- TAB MENU -->
+        <div id="tab-menu" class="flex border-t border-slate-100 bg-slate-50/80 backdrop-blur-md">
+            <button onclick="setAppMode('choice')" id="tab-choice" class="flex-1 py-4 text-[10px] uppercase tracking-widest tab-active">Choice</button>
+            <button onclick="setAppMode('typing')" id="tab-typing" class="flex-1 py-4 text-[10px] uppercase tracking-widest text-slate-400">Typing</button>
+            <button onclick="setAppMode('review')" id="tab-review" class="flex-1 py-4 text-[10px] uppercase tracking-widest text-slate-400 font-bold text-orange-500">Review (★)</button>
         </div>
     </div>
 
     <script>
-        const quizData = [
-            {
-                dialogue: "A: The client is asking for a discount we can't offer.\nB: (      ) about that request, but let's see if we can offer something else.",
-                context: "相手の要望に難色を示す時",
-                q: "(      ) about that request, but let's see if we can offer something else.",
-                a: "Reservations", // 文頭なので大文字
-                choices: ["Reservations", "Complaints", "Bad feelings", "Doubts"],
-                exp: "文頭なのでRは大文字です。I have reservations... ではなく文頭に持ってくることで『懸念がありまして、』というニュアンスを強調します。"
-            },
-            {
-                dialogue: "A: When is the final report due?\nB: I'm just (      ) up on that with the team right now.",
-                context: "進捗を確認中の時",
-                q: "I'm just (      ) up on that with the team right now.",
-                a: "following", // 文中なので小文字
-                choices: ["following", "checking", "looking", "asking"],
-                exp: "I'm just following up on... は進捗確認の黄金フレーズ。文中なので小文字になります。"
-            }
+        // --- データの定義 ---
+        const masterData = [
+            { dialogue: "A: 予算が超過しそうです。\nB: その件については(  )がありますが、代案を探しましょう。", q: "(      ) about that request, but let's see if we can offer something else.", a: "Reservations", choices: ["Reservations", "Complaints", "Doubts", "Bad feelings"], exp: "文頭のReservationsは『懸念・含み』を意味し、丁寧に反対する際の洗練された表現です。" },
+            { dialogue: "A: 期限はいつですか？\nB: ちょうど今、チームとその件を(  )しているところです。", q: "I'm just (      ) up on that with the team right now.", a: "following", choices: ["following", "checking", "looking", "calling"], exp: "Following upは進捗確認の定番。単なる確認(checking)よりビジネスの責任感が出る響きです。" },
+            { dialogue: "A: 会議の最後に何かありますか？\nB: 内容を(  )すると、主な優先事項はコスト削減です。", q: "To (      ), our main priority is cost reduction.", a: "recap", choices: ["recap", "repeat", "summarize", "return"], exp: "Recapは要点を短くまとめる時に使われます。Summarizeよりプロっぽく聞こえます。" }
         ];
 
+        // --- 状態管理 ---
         let currentIdx = 0;
-        let mode = 'choice';
-        let reviewList = new Set();
+        let appMode = 'choice'; // choice, typing, review
+        let correctCount = 0;
+        let reviewIds = JSON.parse(localStorage.getItem('biz_review_ids') || '[]');
+        let activePool = [...masterData];
 
-        function init() {
-            const data = quizData[currentIdx];
-            document.getElementById('dialogue').innerText = data.dialogue;
-            document.getElementById('context-desc').innerText = `【場面】${data.context}`;
+        // --- 初期化 ---
+        function initQuiz() {
+            if (activePool.length === 0) {
+                showSummary();
+                return;
+            }
+            const data = activePool[currentIdx];
+            document.getElementById('current-pos').innerText = `${currentIdx + 1} / ${activePool.length}`;
+            document.getElementById('dialogue-text').innerText = data.dialogue;
             document.getElementById('question-text').innerText = data.q;
-            document.getElementById('feedback').classList.add('hidden');
-            document.getElementById('quiz-area').classList.remove('hidden');
-            document.getElementById('progress').style.width = `${(currentIdx / quizData.length) * 100}%`;
+            document.getElementById('progress-bar').style.width = `${((currentIdx) / activePool.length) * 100}%`;
             
-            // 復習ボタンの状態反映
-            const btn = document.getElementById('review-btn');
-            btn.className = reviewList.has(currentIdx) ? "flex items-center space-x-1 text-orange-500" : "flex items-center space-x-1 text-slate-400";
+            updateStarUI();
+            
+            document.getElementById('quiz-screen').classList.remove('hidden');
+            document.getElementById('feedback-screen').classList.add('hidden');
+            document.getElementById('summary-screen').classList.add('hidden');
 
-            if (mode === 'choice') {
-                document.getElementById('choice-mode').classList.remove('hidden');
-                document.getElementById('typing-mode').classList.add('hidden');
-                renderChoices(data);
+            if (appMode === 'typing') {
+                showTyping();
             } else {
-                document.getElementById('choice-mode').classList.add('hidden');
-                document.getElementById('typing-mode').classList.remove('hidden');
-                document.getElementById('type-input').value = '';
-                // 1文字目ヒント表示
-                document.getElementById('hint-char').innerText = data.a.charAt(0);
+                showChoices();
             }
         }
 
-        function renderChoices(data) {
-            const container = document.getElementById('choice-mode');
-            container.innerHTML = '';
+        function showChoices() {
+            document.getElementById('choice-area').classList.remove('hidden');
+            document.getElementById('typing-area').classList.add('hidden');
+            const area = document.getElementById('choice-area');
+            area.innerHTML = '';
+            const data = activePool[currentIdx];
             data.choices.forEach(c => {
                 const b = document.createElement('button');
-                b.className = "w-full text-left p-4 border-2 border-slate-100 rounded-2xl hover:bg-indigo-50 hover:border-indigo-200 transition font-medium";
+                b.className = "w-full text-left p-5 bg-white border-2 border-slate-100 rounded-2xl hover:border-indigo-300 transition-all font-bold shadow-sm active:scale-[0.98]";
                 b.innerText = c;
                 b.onclick = () => checkAnswer(c);
-                container.appendChild(b);
+                area.appendChild(b);
             });
         }
 
+        function showTyping() {
+            document.getElementById('choice-area').classList.add('hidden');
+            document.getElementById('typing-area').classList.remove('hidden');
+            const input = document.getElementById('type-input');
+            input.value = '';
+            document.getElementById('hint-letter').innerText = activePool[currentIdx].a.charAt(0);
+            setTimeout(() => input.focus(), 200);
+        }
+
+        // --- 判定ロジック ---
         function checkAnswer(val) {
-            const data = quizData[currentIdx];
-            const isCorrect = val.trim() === data.a;
+            const data = activePool[currentIdx];
+            // 入力最適化：大文字小文字は許容するが、表示は正しく出す
+            const isCorrect = val.trim().toLowerCase() === data.a.toLowerCase();
             
-            document.getElementById('quiz-area').classList.add('hidden');
-            document.getElementById('feedback').classList.remove('hidden');
-            
-            const card = document.getElementById('fb-card');
-            const title = document.getElementById('fb-title');
+            if (isCorrect) correctCount++;
+            updateScore();
+
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('feedback-screen').classList.remove('hidden');
+
+            const card = document.getElementById('result-card');
+            const title = document.getElementById('result-title');
             
             if (isCorrect) {
-                card.className = "p-6 rounded-2xl bg-green-50 text-green-700 border-2 border-green-100";
-                title.innerText = "Correct! ✨";
+                card.className = "p-6 rounded-[2rem] mb-6 bg-emerald-50 text-emerald-800 border-2 border-emerald-100";
+                title.innerText = "EXCELLENT";
             } else {
-                card.className = "p-6 rounded-2xl bg-red-50 text-red-700 border-2 border-red-100";
-                title.innerText = `Incorrect... (正解: ${data.a})`;
+                card.className = "p-6 rounded-[2rem] mb-6 bg-rose-50 text-rose-800 border-2 border-rose-100";
+                title.innerText = "MISS";
             }
-            document.getElementById('explanation').innerText = data.exp;
+
+            document.getElementById('full-sentence').innerHTML = data.q.replace("(      )", `<span class="text-indigo-600 underline">${data.a}</span>`);
+            document.getElementById('explanation-text').innerText = data.exp;
+            
+            if (isCorrect) speakFullSentence();
         }
 
-        function nextStep() {
-            currentIdx = (currentIdx + 1) % quizData.length;
-            init();
+        function nextQuestion() {
+            currentIdx++;
+            if (currentIdx >= activePool.length) {
+                showSummary();
+            } else {
+                initQuiz();
+            }
         }
 
-        function setMode(m) {
-            mode = m;
-            document.getElementById('tab-choice').className = m === 'choice' ? "flex-1 text-xs font-bold tab-active" : "flex-1 text-xs font-bold text-slate-400";
-            document.getElementById('tab-type').className = m === 'type' ? "flex-1 text-xs font-bold tab-active" : "flex-1 text-xs font-bold text-slate-400";
-            init();
+        // --- 音声読み上げ ---
+        function speakFullSentence() {
+            const data = activePool[currentIdx];
+            const text = data.q.replace("(      )", data.a);
+            const uttr = new SpeechSynthesisUtterance(text);
+            uttr.lang = 'en-US';
+            uttr.rate = 0.9;
+            speechSynthesis.speak(uttr);
         }
 
+        // --- モード切り替え ---
+        function setAppMode(m) {
+            appMode = m;
+            document.getElementById('tab-choice').className = (m==='choice') ? "flex-1 py-4 text-[10px] uppercase tab-active" : "flex-1 py-4 text-[10px] uppercase text-slate-400";
+            document.getElementById('tab-typing').className = (m==='typing') ? "flex-1 py-4 text-[10px] uppercase tab-active" : "flex-1 py-4 text-[10px] uppercase text-slate-400";
+            document.getElementById('tab-review').className = (m==='review') ? "flex-1 py-4 text-[10px] uppercase tab-active text-orange-500" : "flex-1 py-4 text-[10px] uppercase text-slate-400 font-bold text-orange-500";
+            
+            if (m === 'review') {
+                activePool = masterData.filter((_, idx) => reviewIds.includes(idx));
+                if (activePool.length === 0) {
+                    alert("★マークがついた復習問題がありません！");
+                    setAppMode('choice');
+                    return;
+                }
+            } else {
+                activePool = [...masterData];
+            }
+            resetProgress();
+        }
+
+        // --- 復習保存 ---
         function toggleReviewMark() {
-            if (reviewList.has(currentIdx)) {
-                reviewList.delete(currentIdx);
+            const data = activePool[currentIdx];
+            const originalIdx = masterData.findIndex(m => m.q === data.q);
+            if (reviewIds.includes(originalIdx)) {
+                reviewIds = reviewIds.filter(id => id !== originalIdx);
             } else {
-                reviewList.add(currentIdx);
+                reviewIds.push(originalIdx);
             }
-            init();
+            localStorage.setItem('biz_review_ids', JSON.stringify(reviewIds));
+            updateStarUI();
         }
 
-        init();
+        function updateStarUI() {
+            const data = activePool[currentIdx];
+            const originalIdx = masterData.findIndex(m => m.q === data.q);
+            const star = document.getElementById('star-svg');
+            if (reviewIds.includes(originalIdx)) {
+                star.setAttribute('fill', '#fb923c');
+                star.classList.add('text-orange-400');
+            } else {
+                star.setAttribute('fill', 'none');
+                star.classList.remove('text-orange-400');
+            }
+        }
+
+        // --- スコア・リセット ---
+        function updateScore() {
+            const rate = Math.round((correctCount / (currentIdx + 1)) * 100);
+            document.getElementById('score-display').innerText = `${rate}%`;
+        }
+
+        function showSummary() {
+            document.getElementById('quiz-screen').classList.add('hidden');
+            document.getElementById('feedback-screen').classList.add('hidden');
+            document.getElementById('summary-screen').classList.remove('hidden');
+            document.getElementById('tab-menu').classList.add('hidden');
+            
+            const rate = Math.round((correctCount / activePool.length) * 100);
+            let rank = "C";
+            if (rate >= 90) rank = "🏆 Executive";
+            else if (rate >= 70) rank = "👔 Manager";
+            else rank = "🌱 Trainee";
+            
+            document.getElementById('final-rank').innerText = rank;
+            document.getElementById('summary-text').innerText = `${activePool.length}問中 ${correctCount}問正解しました！`;
+        }
+
+        function resetProgress() {
+            currentIdx = 0;
+            correctCount = 0;
+            document.getElementById('score-display').innerText = "0%";
+            document.getElementById('tab-menu').classList.remove('hidden');
+            initQuiz();
+        }
+
+        function resetApp() {
+            activePool = [...masterData];
+            setAppMode('choice');
+        }
+
+        initQuiz();
     </script>
 </body>
 </html>
