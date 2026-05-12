@@ -3,137 +3,178 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BizEnglish Pro - Quiz</title>
+    <title>BizEnglish Pro v2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .hidden { display: none; }
+        .tab-active { border-bottom: 3px solid #4f46e5; color: #4f46e5; }
     </style>
 </head>
-<body class="bg-slate-50 min-h-screen flex items-center justify-center p-4 font-sans text-slate-800">
+<body class="bg-slate-100 min-h-screen p-4 flex justify-center items-start">
 
-    <div id="app" class="max-w-md w-full bg-white rounded-2xl shadow-xl p-6 border border-slate-200">
+    <div id="app" class="max-w-md w-full bg-white rounded-3xl shadow-2xl overflow-hidden mt-4">
         <!-- ヘッダー -->
-        <div class="flex justify-between items-center mb-6">
-            <h1 class="text-xl font-bold text-indigo-600">BizEnglish Pro</h1>
-            <div id="mode-badge" class="text-xs bg-indigo-100 text-indigo-700 px-2 py-1 rounded-full font-bold">4択モード</div>
+        <div class="bg-indigo-600 p-6 text-white text-center">
+            <h1 class="text-xl font-bold tracking-tight">BizEnglish Pro <span class="text-xs bg-white/20 px-2 py-0.5 rounded ml-2">v2.0</span></h1>
         </div>
 
-        <!-- 進捗 -->
-        <div class="w-full bg-slate-100 h-2 rounded-full mb-6">
-            <div id="progress" class="bg-indigo-500 h-2 rounded-full transition-all duration-300" style="width: 0%"></div>
-        </div>
-
-        <!-- 問題エリア -->
-        <div id="quiz-container">
-            <p id="context" class="text-sm text-slate-500 mb-2 italic"></p>
-            <p id="question" class="text-lg font-medium mb-6 leading-relaxed"></p>
-
-            <!-- 4択用コンテナ -->
-            <div id="choice-container" class="space-y-3"></div>
-
-            <!-- タイピング用コンテナ -->
-            <div id="typing-container" class="hidden space-y-4">
-                <input type="text" id="type-input" placeholder="ここに入力..." class="w-full border-2 border-slate-200 rounded-lg p-3 focus:border-indigo-500 outline-none transition text-lg uppercase">
-                <button onclick="checkTyping()" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition">回答する</button>
+        <div class="p-6">
+            <!-- プログレスバー & 復習チェック -->
+            <div class="flex justify-between items-center mb-6">
+                <div class="w-3/4 bg-slate-100 h-2 rounded-full overflow-hidden">
+                    <div id="progress" class="bg-indigo-500 h-2 transition-all duration-500" style="width: 0%"></div>
+                </div>
+                <button onclick="toggleReviewMark()" id="review-btn" class="flex items-center space-x-1 text-slate-400 hover:text-orange-500 transition">
+                    <span class="text-lg">★</span>
+                    <span class="text-xs font-bold">復習</span>
+                </button>
             </div>
 
-            <!-- 解説エリア -->
-            <div id="feedback" class="hidden mt-6 p-4 rounded-lg">
-                <p id="result-msg" class="font-bold mb-1"></p>
-                <p id="explanation" class="text-sm leading-relaxed"></p>
-                <button onclick="nextQuestion()" class="mt-4 w-full bg-slate-800 text-white py-2 rounded-lg text-sm">次へ進む</button>
+            <!-- クイズコンテンツ -->
+            <div id="quiz-area">
+                <!-- 会話の前座 (新機能) -->
+                <div class="bg-slate-50 border-l-4 border-indigo-300 p-4 mb-6 rounded-r-lg">
+                    <p class="text-xs text-indigo-500 font-bold mb-1 uppercase tracking-widest">Conversation Context</p>
+                    <p id="dialogue" class="text-sm text-slate-700 italic leading-relaxed"></p>
+                </div>
+
+                <p id="context-desc" class="text-xs font-bold text-slate-400 mb-2"></p>
+                <p id="question-text" class="text-lg font-semibold mb-8 text-slate-800 leading-snug"></p>
+
+                <!-- 4択モード -->
+                <div id="choice-mode" class="space-y-3"></div>
+
+                <!-- タイピングモード -->
+                <div id="typing-mode" class="hidden">
+                    <div class="relative">
+                        <input type="text" id="type-input" class="w-full border-2 border-slate-200 rounded-2xl p-4 focus:border-indigo-500 outline-none transition text-lg pr-12">
+                        <span id="hint-char" class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-300 font-mono font-bold text-xl"></span>
+                    </div>
+                    <button onclick="checkAnswer(document.getElementById('type-input').value)" class="mt-4 w-full bg-indigo-600 text-white py-4 rounded-2xl font-bold shadow-lg shadow-indigo-200 active:scale-95 transition">回答を確定する</button>
+                </div>
+            </div>
+
+            <!-- フィードバック (正解・不正解表示) -->
+            <div id="feedback" class="hidden mt-6 space-y-4">
+                <div id="fb-card" class="p-4 rounded-2xl">
+                    <p id="fb-title" class="font-black text-xl mb-1"></p>
+                    <p id="explanation" class="text-sm text-slate-600 leading-relaxed"></p>
+                </div>
+                <button onclick="nextStep()" class="w-full bg-slate-800 text-white py-4 rounded-2xl font-bold hover:bg-black transition">Next Level →</button>
             </div>
         </div>
 
-        <!-- 設定切り替え -->
-        <div class="mt-8 pt-4 border-t border-slate-100 flex justify-center">
-            <button onclick="toggleMode()" class="text-xs text-slate-400 underline uppercase tracking-widest">モードを切り替える</button>
+        <!-- 下部メニュー -->
+        <div class="flex border-t border-slate-100 h-16 bg-slate-50/50">
+            <button onclick="setMode('choice')" id="tab-choice" class="flex-1 text-xs font-bold tab-active">4択</button>
+            <button onclick="setMode('type')" id="tab-type" class="flex-1 text-xs font-bold text-slate-400">タイピング</button>
         </div>
     </div>
 
     <script>
-        // 問題データ（先ほどの10問から一部抜粋）
         const quizData = [
-            { context: "会議で丁寧に反対したい時", q: "I have some (      ) about this plan.", a: "RESERVATIONS", choices: ["COMPLAINTS", "RESERVATIONS", "NOISES", "BAD FEELINGS"], exp: "reservationsは『懸念』。ダイレクトにNoと言わない洗練された表現です。" },
-            { context: "進捗を確認する時", q: "I'm just (      ) up on our meeting.", a: "FOLLOWING", choices: ["FOLLOWING", "CHECKING", "LOOKING", "ASKING"], exp: "Following upはビジネスメールの定番。相手を急かさない丁寧さがあります。" },
-            { context: "要点をまとめる時", q: "To (      ), our main priority is cost.", a: "RECAP", choices: ["RECAP", "RETRY", "REUSE", "RETURN"], exp: "Recapは要約のカジュアルかつプロな表現。会議の締めに必須です。" }
+            {
+                dialogue: "A: The client is asking for a discount we can't offer.\nB: (      ) about that request, but let's see if we can offer something else.",
+                context: "相手の要望に難色を示す時",
+                q: "(      ) about that request, but let's see if we can offer something else.",
+                a: "Reservations", // 文頭なので大文字
+                choices: ["Reservations", "Complaints", "Bad feelings", "Doubts"],
+                exp: "文頭なのでRは大文字です。I have reservations... ではなく文頭に持ってくることで『懸念がありまして、』というニュアンスを強調します。"
+            },
+            {
+                dialogue: "A: When is the final report due?\nB: I'm just (      ) up on that with the team right now.",
+                context: "進捗を確認中の時",
+                q: "I'm just (      ) up on that with the team right now.",
+                a: "following", // 文中なので小文字
+                choices: ["following", "checking", "looking", "asking"],
+                exp: "I'm just following up on... は進捗確認の黄金フレーズ。文中なので小文字になります。"
+            }
         ];
 
         let currentIdx = 0;
-        let isTypingMode = false;
+        let mode = 'choice';
+        let reviewList = new Set();
 
-        function initQuiz() {
+        function init() {
             const data = quizData[currentIdx];
-            document.getElementById('context').innerText = data.context;
-            document.getElementById('question').innerText = data.q;
+            document.getElementById('dialogue').innerText = data.dialogue;
+            document.getElementById('context-desc').innerText = `【場面】${data.context}`;
+            document.getElementById('question-text').innerText = data.q;
             document.getElementById('feedback').classList.add('hidden');
+            document.getElementById('quiz-area').classList.remove('hidden');
             document.getElementById('progress').style.width = `${(currentIdx / quizData.length) * 100}%`;
+            
+            // 復習ボタンの状態反映
+            const btn = document.getElementById('review-btn');
+            btn.className = reviewList.has(currentIdx) ? "flex items-center space-x-1 text-orange-500" : "flex items-center space-x-1 text-slate-400";
 
-            if (isTypingMode) {
-                showTypingMode();
+            if (mode === 'choice') {
+                document.getElementById('choice-mode').classList.remove('hidden');
+                document.getElementById('typing-mode').classList.add('hidden');
+                renderChoices(data);
             } else {
-                showChoiceMode();
+                document.getElementById('choice-mode').classList.add('hidden');
+                document.getElementById('typing-mode').classList.remove('hidden');
+                document.getElementById('type-input').value = '';
+                // 1文字目ヒント表示
+                document.getElementById('hint-char').innerText = data.a.charAt(0);
             }
         }
 
-        function showChoiceMode() {
-            document.getElementById('choice-container').classList.remove('hidden');
-            document.getElementById('typing-container').classList.add('hidden');
-            const container = document.getElementById('choice-container');
+        function renderChoices(data) {
+            const container = document.getElementById('choice-mode');
             container.innerHTML = '';
-            quizData[currentIdx].choices.forEach(choice => {
-                const btn = document.createElement('button');
-                btn.className = "w-full text-left p-4 border border-slate-200 rounded-xl hover:bg-indigo-50 transition hover:border-indigo-300 font-medium";
-                btn.innerText = choice;
-                btn.onclick = () => checkChoice(choice);
-                container.appendChild(btn);
+            data.choices.forEach(c => {
+                const b = document.createElement('button');
+                b.className = "w-full text-left p-4 border-2 border-slate-100 rounded-2xl hover:bg-indigo-50 hover:border-indigo-200 transition font-medium";
+                b.innerText = c;
+                b.onclick = () => checkAnswer(c);
+                container.appendChild(b);
             });
         }
 
-        function showTypingMode() {
-            document.getElementById('choice-container').classList.add('hidden');
-            document.getElementById('typing-container').classList.remove('hidden');
-            document.getElementById('type-input').value = '';
-            document.getElementById('type-input').focus();
-        }
-
-        function checkChoice(selected) {
-            const isCorrect = selected === quizData[currentIdx].a;
-            showFeedback(isCorrect);
-        }
-
-        function checkTyping() {
-            const input = document.getElementById('type-input').value.toUpperCase().trim();
-            showFeedback(input === quizData[currentIdx].a);
-        }
-
-        function showFeedback(isCorrect) {
-            const fb = document.getElementById('feedback');
-            const msg = document.getElementById('result-msg');
-            fb.classList.remove('hidden');
-            fb.className = `mt-6 p-4 rounded-lg ${isCorrect ? 'bg-green-50 text-green-800' : 'bg-red-50 text-red-800'}`;
-            msg.innerText = isCorrect ? "正解！ Excellent." : "惜しい！ Try again.";
-            document.getElementById('explanation').innerText = quizData[currentIdx].exp;
-        }
-
-        function nextQuestion() {
-            currentIdx++;
-            if (currentIdx < quizData.length) {
-                initQuiz();
+        function checkAnswer(val) {
+            const data = quizData[currentIdx];
+            const isCorrect = val.trim() === data.a;
+            
+            document.getElementById('quiz-area').classList.add('hidden');
+            document.getElementById('feedback').classList.remove('hidden');
+            
+            const card = document.getElementById('fb-card');
+            const title = document.getElementById('fb-title');
+            
+            if (isCorrect) {
+                card.className = "p-6 rounded-2xl bg-green-50 text-green-700 border-2 border-green-100";
+                title.innerText = "Correct! ✨";
             } else {
-                alert("全てのトレーニングが完了しました！");
-                currentIdx = 0;
-                initQuiz();
+                card.className = "p-6 rounded-2xl bg-red-50 text-red-700 border-2 border-red-100";
+                title.innerText = `Incorrect... (正解: ${data.a})`;
             }
+            document.getElementById('explanation').innerText = data.exp;
         }
 
-        function toggleMode() {
-            isTypingMode = !isTypingMode;
-            document.getElementById('mode-badge').innerText = isTypingMode ? "タイピングモード" : "4択モード";
-            initQuiz();
+        function nextStep() {
+            currentIdx = (currentIdx + 1) % quizData.length;
+            init();
         }
 
-        initQuiz();
+        function setMode(m) {
+            mode = m;
+            document.getElementById('tab-choice').className = m === 'choice' ? "flex-1 text-xs font-bold tab-active" : "flex-1 text-xs font-bold text-slate-400";
+            document.getElementById('tab-type').className = m === 'type' ? "flex-1 text-xs font-bold tab-active" : "flex-1 text-xs font-bold text-slate-400";
+            init();
+        }
+
+        function toggleReviewMark() {
+            if (reviewList.has(currentIdx)) {
+                reviewList.delete(currentIdx);
+            } else {
+                reviewList.add(currentIdx);
+            }
+            init();
+        }
+
+        init();
     </script>
 </body>
 </html>
